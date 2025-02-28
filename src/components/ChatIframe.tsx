@@ -59,12 +59,12 @@ const ChatIframe = ({ url = "https://your-iframe-url.com/" }: ChatIframeProps) =
             </div>
           ))}
 
-          <div className="p-3 border-t border-gray-200 bg-white">
+          <div className="py-3 border-t border-gray-200 bg-white">
             <div className="flex">
               <input
                 type="text"
                 placeholder="Type a message..."
-                className="flex-1 border border-gray-300 rounded-l-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="flex-1 min-w-0 border border-gray-300 rounded-l-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <Button className="rounded-l-none">Send</Button>
             </div>

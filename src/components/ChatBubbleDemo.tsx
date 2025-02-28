@@ -46,13 +46,60 @@ const ChatBubbleDemo = () => {
   const buttonPositionStyle = getPositionStyles(buttonPosition);
   const chatPositionStyle = getChatContainerPosition(buttonPosition);
 
-  // Color options
+  // Color options with hover colors
   const colorOptions = [
-    { value: "#3b82f6", label: "Blue", bgClass: "bg-blue-500" },
-    { value: "#8B5CF6", label: "Purple", bgClass: "bg-purple-500" },
-    { value: "#F97316", label: "Orange", bgClass: "bg-orange-500" },
-    { value: "#10B981", label: "Green", bgClass: "bg-green-500" },
-    { value: "#F43F5E", label: "Red", bgClass: "bg-red-500" },
+    { value: "#3b82f6", label: "Blue", bgClass: "bg-blue-500", hoverClass: "hover:ring-blue-300" },
+    { value: "#8B5CF6", label: "Purple", bgClass: "bg-purple-500", hoverClass: "hover:ring-purple-300" },
+    { value: "#F97316", label: "Orange", bgClass: "bg-orange-500", hoverClass: "hover:ring-orange-300" },
+    { value: "#10B981", label: "Green", bgClass: "bg-green-500", hoverClass: "hover:ring-green-300" },
+    { value: "#F43F5E", label: "Red", bgClass: "bg-red-500", hoverClass: "hover:ring-red-300" },
+    { value: "custom", label: "Custom", bgClass: "", hoverClass: "hover:ring-gray-300" },
+  ];
+
+  const [customColor, setCustomColor] = useState("#000000");
+
+  // Position options with SVG icons
+  const positionOptions = [
+    {
+      value: "bottom-right",
+      label: "Bottom Right",
+      icon: (
+        <svg className="w-8 h-8" viewBox="0 0 24 24" strokeWidth="1.5" fill="none">
+          <path d="M2 17.7143V6.28571C2 5.02335 2.99492 4 4.22222 4H19.7778C21.0051 4 22 5.02335 22 6.28571V17.7143C22 18.9767 21.0051 20 19.7778 20H4.22222C2.99492 20 2 18.9767 2 17.7143Z" stroke="currentColor" strokeWidth="1.5" />
+          <rect x="13" y="13" width="6" height="4" rx="1" fill="currentColor" />
+        </svg>
+      )
+    },
+    {
+      value: "bottom-left",
+      label: "Bottom Left",
+      icon: (
+        <svg className="w-8 h-8" viewBox="0 0 24 24" strokeWidth="1.5" fill="none">
+          <path d="M2 17.7143V6.28571C2 5.02335 2.99492 4 4.22222 4H19.7778C21.0051 4 22 5.02335 22 6.28571V17.7143C22 18.9767 21.0051 20 19.7778 20H4.22222C2.99492 20 2 18.9767 2 17.7143Z" stroke="currentColor" strokeWidth="1.5" />
+          <rect x="5" y="13" width="6" height="4" rx="1" fill="currentColor" />
+        </svg>
+      )
+    },
+    {
+      value: "top-right",
+      label: "Top Right",
+      icon: (
+        <svg className="w-8 h-8" viewBox="0 0 24 24" strokeWidth="1.5" fill="none">
+          <path d="M2 17.7143V6.28571C2 5.02335 2.99492 4 4.22222 4H19.7778C21.0051 4 22 5.02335 22 6.28571V17.7143C22 18.9767 21.0051 20 19.7778 20H4.22222C2.99492 20 2 18.9767 2 17.7143Z" stroke="currentColor" strokeWidth="1.5" />
+          <rect x="13" y="7" width="6" height="4" rx="1" fill="currentColor" />
+        </svg>
+      )
+    },
+    {
+      value: "top-left",
+      label: "Top Left",
+      icon: (
+        <svg className="w-8 h-8" viewBox="0 0 24 24" strokeWidth="1.5" fill="none">
+          <path d="M2 17.7143V6.28571C2 5.02335 2.99492 4 4.22222 4H19.7778C21.0051 4 22 5.02335 22 6.28571V17.7143C22 18.9767 21.0051 20 19.7778 20H4.22222C2.99492 20 2 18.9767 2 17.7143Z" stroke="currentColor" strokeWidth="1.5" />
+          <rect x="5" y="7" width="6" height="4" rx="1" fill="currentColor" />
+        </svg>
+      )
+    }
   ];
 
   return (
@@ -64,59 +111,122 @@ const ChatBubbleDemo = () => {
         </p>
 
         <div className="w-full max-w-3xl mb-8">
+          <div className="py-8">
+            <h3 className="text-lg font-medium mb-3">Frame URL</h3>
+            <div className="space-y-2">
+              <Label htmlFor="chat-url">URL to open in iframe</Label>
+              <Input
+                id="chat-url"
+                value={frameUrl}
+                onChange={(e) => setFrameUrl(e.target.value)}
+                placeholder="https://your-iframe-url.com/"
+                className="w-full"
+              />
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
               <h3 className="text-lg font-medium">Position</h3>
               <RadioGroup
                 value={buttonPosition}
                 onValueChange={setButtonPosition}
-                className="flex flex-col space-y-3"
+                className="grid grid-cols-2 gap-4"
               >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="bottom-right" id="bottom-right" />
-                  <Label htmlFor="bottom-right">Bottom Right</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="bottom-left" id="bottom-left" />
-                  <Label htmlFor="bottom-left">Bottom Left</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="top-right" id="top-right" />
-                  <Label htmlFor="top-right">Top Right</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="top-left" id="top-left" />
-                  <Label htmlFor="top-left">Top Left</Label>
-                </div>
+                {positionOptions.map((position) => (
+                  <div
+                    key={position.value}
+                    className={`relative p-4 border rounded-lg transition-all duration-200 ${buttonPosition === position.value ? 'border-gray-400 bg-gray-50' : 'border-gray-200 hover:border-gray-300'}`}
+                  >
+                    <RadioGroupItem
+                      value={position.value}
+                      id={position.value}
+                      className="sr-only"
+                    />
+                    <Label
+                      htmlFor={position.value}
+                      className="flex flex-col items-center cursor-pointer space-y-2"
+                    >
+                      <div className="text-gray-600">{position.icon}</div>
+                      <span className="text-sm font-medium">{position.label}</span>
+                    </Label>
+                  </div>
+                ))}
               </RadioGroup>
-
-              <div className="pt-4">
-                <h3 className="text-lg font-medium mb-3">Chat URL</h3>
-                <div className="space-y-2">
-                  <Label htmlFor="chat-url">URL to open in iframe</Label>
-                  <Input
-                    id="chat-url"
-                    value={frameUrl}
-                    onChange={(e) => setFrameUrl(e.target.value)}
-                    placeholder="https://your-iframe-url.com/"
-                    className="w-full"
-                  />
-                </div>
-              </div>
             </div>
 
             <div className="space-y-4">
               <h3 className="text-lg font-medium">Color</h3>
               <RadioGroup
-                value={buttonColor}
-                onValueChange={setButtonColor}
-                className="flex flex-col space-y-3"
+                value={Object.values(colorOptions).some(opt => opt.value !== 'custom' && opt.value === buttonColor) ? buttonColor : 'custom'}
+                onValueChange={(value) => {
+                  if (value === 'custom') {
+                    setButtonColor(customColor);
+                  } else {
+                    setButtonColor(value);
+                  }
+                }}
+                className="grid grid-cols-6 gap-4"
               >
                 {colorOptions.map((color) => (
-                  <div key={color.value} className="flex items-center space-x-2">
-                    <RadioGroupItem value={color.value} id={color.value} />
-                    <div className={`w-6 h-6 rounded-full ${color.bgClass} mr-2`}></div>
-                    <Label htmlFor={color.value}>{color.label}</Label>
+                  <div key={color.value} className="relative">
+                    <RadioGroupItem
+                      value={color.value}
+                      id={color.value}
+                      className="sr-only"
+                    />
+                    {color.value === 'custom' ? (
+                      <>
+                        <input
+                          type="color"
+                          id="custom-color-input"
+                          value={customColor}
+                          onChange={(e) => {
+                            setCustomColor(e.target.value);
+                            setButtonColor(e.target.value);
+                          }}
+                          className="sr-only"
+                        />
+                        <Label
+                          htmlFor="custom-color-input"
+                          className="cursor-pointer block text-center space-y-2"
+                          onClick={() => {
+                            document.getElementById('custom-color-input')?.click();
+                            setButtonColor(customColor);
+                          }}
+                        >
+                          <div
+                            className={`
+                              w-6 h-6 rounded-full mx-auto
+                              transition-all duration-200
+                              ring-2 ring-offset-2
+                              cursor-pointer
+                              ${!Object.values(colorOptions).some(opt => opt.value !== 'custom' && opt.value === buttonColor) ? 'ring-gray-400 scale-110' : 'ring-transparent'}
+                              ${color.hoverClass}
+                            `}
+                            style={{ backgroundColor: customColor }}
+                          />
+                          <span className="text-sm font-medium block">{color.label}</span>
+                        </Label>
+                      </>
+                    ) : (
+                      <Label
+                        htmlFor={color.value}
+                        className="cursor-pointer block text-center space-y-2"
+                      >
+                        <div
+                          className={`
+                            w-6 h-6 rounded-full mx-auto
+                            ${color.bgClass}
+                            transition-all duration-200
+                            ring-2 ring-offset-2
+                            ${buttonColor === color.value ? 'ring-gray-400 scale-110' : 'ring-transparent'}
+                            ${color.hoverClass}
+                          `}
+                        />
+                        <span className="text-sm font-medium block">{color.label}</span>
+                      </Label>
+                    )}
                   </div>
                 ))}
               </RadioGroup>
@@ -206,7 +316,7 @@ const ChatBubbleDemo = () => {
           <div className="bg-gray-50 p-4 rounded-md border border-gray-200 text-sm">
             <h4 className="font-semibold mb-2">Current Configuration:</h4>
             <pre className="bg-gray-800 text-gray-100 p-2 rounded-md overflow-x-auto">
-{`window.chatBubbleConfig = {
+              {`window.chatBubbleConfig = {
   frameUrl: '${frameUrl}',
   buttonColor: '${buttonColor}',
   buttonPosition: '${buttonPosition}',
