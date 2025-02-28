@@ -317,7 +317,7 @@ const ChatBubbleDemo = () => {
           <div className="bg-gray-50 p-4 rounded-md border border-gray-200 text-sm">
             <h4 className="font-semibold mb-2">Current Configuration:</h4>
             <Highlight
-              theme={themes.nightOwl}
+              theme={themes.palenight}
               code={`window.chatBubbleConfig = {
   frameUrl: '${frameUrl}',
   buttonColor: '${buttonColor}',

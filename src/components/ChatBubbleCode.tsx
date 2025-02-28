@@ -29,8 +29,7 @@ const ChatBubbleCode = () => {
 
   return (
     <Card className="p-4 bg-gray-50 border border-gray-200 overflow-hidden">
-      <div className="flex justify-between items-center mb-2">
-        <div className="text-sm font-mono text-gray-500">chat-bubble.js</div>
+      <div className="flex justify-end items-center mb-2">
         <Button
           variant="ghost"
           size="sm"
@@ -48,11 +47,11 @@ const ChatBubbleCode = () => {
           )}
         </Button>
       </div>
-      <pre className="text-sm overflow-x-auto p-4 bg-gray-900 text-gray-100 rounded-md">
+      <pre className="text-sm overflow-x-auto pb-2 rounded-md">
         <Highlight
-          theme={themes.nightOwl}
+          theme={themes.palenight}
           code={scriptCode}
-          language="javascript"
+          language="html"
         >
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
             <pre className="bg-gray-900 text-gray-100 p-4 rounded-xl overflow-x-auto font-mono text-sm leading-relaxed" style={style}>
