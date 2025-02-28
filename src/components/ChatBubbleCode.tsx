@@ -22,7 +22,8 @@ const ChatBubbleCode = () => {
 <script src="https://your-website.com/chat-bubble.js"></script>`;
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(scriptCode);
+    const codeToCopy = scriptCode.replace(/,\s\/\/.*\n/g, ",\n") + '\n';
+    navigator.clipboard.writeText(codeToCopy);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
