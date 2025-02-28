@@ -5,11 +5,13 @@ import { Card } from "@/components/ui/card";
 import ChatIframe from "./ChatIframe";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Input } from "@/components/ui/input";
 
 const ChatBubbleDemo = () => {
   const [showChat, setShowChat] = useState(false);
   const [buttonPosition, setButtonPosition] = useState("bottom-right");
   const [buttonColor, setButtonColor] = useState("#3b82f6");
+  const [chatUrl, setChatUrl] = useState("https://your-chat-url.com/");
 
   // Get position styles based on buttonPosition
   const getPositionStyles = (position) => {
@@ -87,6 +89,20 @@ const ChatBubbleDemo = () => {
                   <Label htmlFor="top-left">Top Left</Label>
                 </div>
               </RadioGroup>
+              
+              <div className="pt-4">
+                <h3 className="text-lg font-medium mb-3">Chat URL</h3>
+                <div className="space-y-2">
+                  <Label htmlFor="chat-url">URL to open in iframe</Label>
+                  <Input 
+                    id="chat-url" 
+                    value={chatUrl} 
+                    onChange={(e) => setChatUrl(e.target.value)}
+                    placeholder="https://your-chat-url.com/"
+                    className="w-full"
+                  />
+                </div>
+              </div>
             </div>
             
             <div className="space-y-4">
@@ -191,7 +207,7 @@ const ChatBubbleDemo = () => {
             <h4 className="font-semibold mb-2">Current Configuration:</h4>
             <pre className="bg-gray-800 text-gray-100 p-2 rounded-md overflow-x-auto">
 {`window.chatBubbleConfig = {
-  chatUrl: 'https://your-chat-url.com/',
+  chatUrl: '${chatUrl}',
   buttonColor: '${buttonColor}',
   buttonPosition: '${buttonPosition}',
   buttonSize: '60px',
