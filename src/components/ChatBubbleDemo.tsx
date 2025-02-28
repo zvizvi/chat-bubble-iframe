@@ -13,6 +13,8 @@ const ChatBubbleDemo = () => {
   const [buttonPosition, setButtonPosition] = useState("bottom-right");
   const [buttonColor, setButtonColor] = useState("#3b82f6");
   const [frameUrl, setFrameUrl] = useState("https://your-iframe-url.com/");
+  const [frameWidth, setFrameWidth] = useState("300");
+  const [frameHeight, setFrameHeight] = useState("360");
 
   // Get position styles based on buttonPosition
   const getPositionStyles = (position) => {
@@ -111,7 +113,7 @@ const ChatBubbleDemo = () => {
           Customize the chat bubble and see how it works. You can adjust the position and color of the button, then click it to open the chat iframe.
         </p>
 
-        <div className="w-full max-w-3xl mb-8">
+        <div className="w-full max-w-3xl mb-12">
           <div className="py-8">
             <h3 className="text-lg font-medium mb-3">Frame URL</h3>
             <div className="space-y-2">
@@ -156,48 +158,49 @@ const ChatBubbleDemo = () => {
               </RadioGroup>
             </div>
 
-            <div className="space-y-4">
-              <h3 className="text-lg font-medium">Color</h3>
-              <RadioGroup
-                value={Object.values(colorOptions).some(opt => opt.value !== 'custom' && opt.value === buttonColor) ? buttonColor : 'custom'}
-                onValueChange={(value) => {
-                  if (value === 'custom') {
-                    setButtonColor(customColor);
-                  } else {
-                    setButtonColor(value);
-                  }
-                }}
-                className="grid grid-cols-6 gap-4"
-              >
-                {colorOptions.map((color) => (
-                  <div key={color.value} className="relative">
-                    <RadioGroupItem
-                      value={color.value}
-                      id={color.value}
-                      className="sr-only"
-                    />
-                    {color.value === 'custom' ? (
-                      <>
-                        <input
-                          type="color"
-                          id="custom-color-input"
-                          value={customColor}
-                          onChange={(e) => {
-                            setCustomColor(e.target.value);
-                            setButtonColor(e.target.value);
-                          }}
-                          className="sr-only"
-                        />
-                        <Label
-                          htmlFor="custom-color-input"
-                          className="cursor-pointer block text-center space-y-2"
-                          onClick={() => {
-                            document.getElementById('custom-color-input')?.click();
-                            setButtonColor(customColor);
-                          }}
-                        >
-                          <div
-                            className={`
+            <div className="space-y-9">
+              <div className="space-y-4">
+                <h3 className="text-lg font-medium">Color</h3>
+                <RadioGroup
+                  value={Object.values(colorOptions).some(opt => opt.value !== 'custom' && opt.value === buttonColor) ? buttonColor : 'custom'}
+                  onValueChange={(value) => {
+                    if (value === 'custom') {
+                      setButtonColor(customColor);
+                    } else {
+                      setButtonColor(value);
+                    }
+                  }}
+                  className="grid grid-cols-6 gap-4"
+                >
+                  {colorOptions.map((color) => (
+                    <div key={color.value} className="relative">
+                      <RadioGroupItem
+                        value={color.value}
+                        id={color.value}
+                        className="sr-only"
+                      />
+                      {color.value === 'custom' ? (
+                        <>
+                          <input
+                            type="color"
+                            id="custom-color-input"
+                            value={customColor}
+                            onChange={(e) => {
+                              setCustomColor(e.target.value);
+                              setButtonColor(e.target.value);
+                            }}
+                            className="sr-only"
+                          />
+                          <Label
+                            htmlFor="custom-color-input"
+                            className="cursor-pointer block text-center space-y-2"
+                            onClick={() => {
+                              document.getElementById('custom-color-input')?.click();
+                              setButtonColor(customColor);
+                            }}
+                          >
+                            <div
+                              className={`
                               w-6 h-6 rounded-full mx-auto
                               transition-all duration-200
                               ring-2 ring-offset-2
@@ -205,18 +208,18 @@ const ChatBubbleDemo = () => {
                               ${!Object.values(colorOptions).some(opt => opt.value !== 'custom' && opt.value === buttonColor) ? 'ring-gray-400 scale-110' : 'ring-transparent'}
                               ${color.hoverClass}
                             `}
-                            style={{ backgroundColor: customColor }}
-                          />
-                          <span className="text-sm font-medium block">{color.label}</span>
-                        </Label>
-                      </>
-                    ) : (
-                      <Label
-                        htmlFor={color.value}
-                        className="cursor-pointer block text-center space-y-2"
-                      >
-                        <div
-                          className={`
+                              style={{ backgroundColor: customColor }}
+                            />
+                            <span className="text-sm font-medium block">{color.label}</span>
+                          </Label>
+                        </>
+                      ) : (
+                        <Label
+                          htmlFor={color.value}
+                          className="cursor-pointer block text-center space-y-2"
+                        >
+                          <div
+                            className={`
                             w-6 h-6 rounded-full mx-auto
                             ${color.bgClass}
                             transition-all duration-200
@@ -224,13 +227,45 @@ const ChatBubbleDemo = () => {
                             ${buttonColor === color.value ? 'ring-gray-400 scale-110' : 'ring-transparent'}
                             ${color.hoverClass}
                           `}
-                        />
-                        <span className="text-sm font-medium block">{color.label}</span>
-                      </Label>
-                    )}
+                          />
+                          <span className="text-sm font-medium block">{color.label}</span>
+                        </Label>
+                      )}
+                    </div>
+                  ))}
+                </RadioGroup>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="text-lg font-medium">Frame Size</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="frame-width">Width (px)</Label>
+                    <Input
+                      id="frame-width"
+                      type="number"
+                      min="200"
+                      max="800"
+                      value={frameWidth}
+                      onChange={(e) => setFrameWidth(e.target.value)}
+                      className="w-full"
+                    />
                   </div>
-                ))}
-              </RadioGroup>
+                  <div className="space-y-2">
+                    <Label htmlFor="frame-height">Height (px)</Label>
+                    <Input
+                      id="frame-height"
+                      type="number"
+                      min="200"
+                      max="800"
+                      value={frameHeight}
+                      onChange={(e) => setFrameHeight(e.target.value)}
+                      className="w-full"
+                    />
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -303,8 +338,8 @@ const ChatBubbleDemo = () => {
               style={{
                 position: "absolute",
                 ...chatPositionStyle,
-                width: "280px",
-                height: "320px",
+                width: `${frameWidth}px`,
+                height: `${frameHeight}px`,
                 zIndex: 10,
               }}
             >
@@ -323,8 +358,8 @@ const ChatBubbleDemo = () => {
   buttonColor: '${buttonColor}',
   buttonPosition: '${buttonPosition}',
   buttonSize: '60px',
-  frameWidth: '320px',
-  frameHeight: '400px',
+  frameWidth: '${frameWidth}px',
+  frameHeight: '${frameHeight}px',
 };`}
               language="javascript"
             >
