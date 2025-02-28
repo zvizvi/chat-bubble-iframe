@@ -8,7 +8,7 @@ interface ChatIframeProps {
   url?: string;
 }
 
-const ChatIframe = ({ url = "https://your-chat-url.com/" }: ChatIframeProps) => {
+const ChatIframe = ({ url = "https://your-iframe-url.com/" }: ChatIframeProps) => {
   // Check if URL is valid
   const isValidUrl = () => {
     try {
@@ -19,7 +19,7 @@ const ChatIframe = ({ url = "https://your-chat-url.com/" }: ChatIframeProps) => 
     }
   };
 
-  const shouldShowMockedChat = !isValidUrl() || url === "https://your-chat-url.com/";
+  const shouldShowMockedChat = !isValidUrl() || url === "https://your-iframe-url.com/";
 
   // Mocked chat messages for preview
   const messages = [
@@ -36,7 +36,7 @@ const ChatIframe = ({ url = "https://your-chat-url.com/" }: ChatIframeProps) => 
           <X className="h-4 w-4" />
         </Button>
       </div>
-      
+
       {shouldShowMockedChat ? (
         // Show mock chat interface when URL is invalid or default
         <div className="flex-1 p-4 overflow-y-auto bg-white">
@@ -58,7 +58,7 @@ const ChatIframe = ({ url = "https://your-chat-url.com/" }: ChatIframeProps) => 
               </div>
             </div>
           ))}
-          
+
           <div className="p-3 border-t border-gray-200 bg-white">
             <div className="flex">
               <input
@@ -73,9 +73,9 @@ const ChatIframe = ({ url = "https://your-chat-url.com/" }: ChatIframeProps) => 
       ) : (
         // Show actual iframe with the provided URL
         <div className="flex-1 overflow-hidden">
-          <iframe 
-            src={url} 
-            className="w-full h-full border-none" 
+          <iframe
+            src={url}
+            className="w-full h-full border-none"
             title="Chat Frame"
             sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
           />

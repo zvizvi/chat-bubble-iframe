@@ -1,17 +1,17 @@
 
 /**
  * Chat Bubble Library
- * A lightweight JavaScript library to embed a chat button on any webpage
+ * A lightweight JavaScript library to embed a frame widget on any webpage
  */
 (function() {
   // Default configuration
   const defaultConfig = {
-    chatUrl: 'https://your-chat-url.com/',
+    frameUrl: 'https://your-iframe-url.com/',
     buttonColor: '#3b82f6',
     buttonPosition: 'bottom-right',
     buttonSize: '60px',
-    chatWidth: '320px',
-    chatHeight: '400px',
+    frameWidth: '320px',
+    frameHeight: '400px',
   };
 
   // Merge default config with user config
@@ -80,8 +80,8 @@
     .chat-iframe-container {
       position: fixed;
       ${getChatContainerPosition(config.buttonPosition)}
-      width: ${config.chatWidth};
-      height: ${config.chatHeight};
+      width: ${config.frameWidth};
+      height: ${config.frameHeight};
       z-index: 9999;
       overflow: hidden;
       border-radius: 12px;
@@ -132,7 +132,7 @@
       if (!iframe) {
         iframe = document.createElement('iframe');
         iframe.className = 'chat-iframe';
-        iframe.src = config.chatUrl;
+        iframe.src = config.frameUrl;
         iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-forms allow-popups');
         iframe.setAttribute('title', 'Chat Frame');
         iframeContainer.appendChild(iframe);

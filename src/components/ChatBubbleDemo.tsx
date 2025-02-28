@@ -8,10 +8,10 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Input } from "@/components/ui/input";
 
 const ChatBubbleDemo = () => {
-  const [showChat, setShowChat] = useState(false);
+  const [showFrame, setShowFrame] = useState(false);
   const [buttonPosition, setButtonPosition] = useState("bottom-right");
   const [buttonColor, setButtonColor] = useState("#3b82f6");
-  const [chatUrl, setChatUrl] = useState("https://your-chat-url.com/");
+  const [frameUrl, setFrameUrl] = useState("https://your-iframe-url.com/");
 
   // Get position styles based on buttonPosition
   const getPositionStyles = (position) => {
@@ -62,13 +62,13 @@ const ChatBubbleDemo = () => {
         <p className="text-gray-600 text-center mb-6 max-w-xl">
           Customize the chat bubble and see how it works. You can adjust the position and color of the button, then click it to open the chat iframe.
         </p>
-        
+
         <div className="w-full max-w-3xl mb-8">
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
               <h3 className="text-lg font-medium">Position</h3>
-              <RadioGroup 
-                value={buttonPosition} 
+              <RadioGroup
+                value={buttonPosition}
                 onValueChange={setButtonPosition}
                 className="flex flex-col space-y-3"
               >
@@ -89,26 +89,26 @@ const ChatBubbleDemo = () => {
                   <Label htmlFor="top-left">Top Left</Label>
                 </div>
               </RadioGroup>
-              
+
               <div className="pt-4">
                 <h3 className="text-lg font-medium mb-3">Chat URL</h3>
                 <div className="space-y-2">
                   <Label htmlFor="chat-url">URL to open in iframe</Label>
-                  <Input 
-                    id="chat-url" 
-                    value={chatUrl} 
-                    onChange={(e) => setChatUrl(e.target.value)}
-                    placeholder="https://your-chat-url.com/"
+                  <Input
+                    id="chat-url"
+                    value={frameUrl}
+                    onChange={(e) => setFrameUrl(e.target.value)}
+                    placeholder="https://your-iframe-url.com/"
                     className="w-full"
                   />
                 </div>
               </div>
             </div>
-            
+
             <div className="space-y-4">
               <h3 className="text-lg font-medium">Color</h3>
-              <RadioGroup 
-                value={buttonColor} 
+              <RadioGroup
+                value={buttonColor}
                 onValueChange={setButtonColor}
                 className="flex flex-col space-y-3"
               >
@@ -123,13 +123,13 @@ const ChatBubbleDemo = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="relative w-full max-w-2xl bg-gray-50 rounded-lg p-4 md:p-8 border border-gray-200 min-h-[400px]">
           {/* Demo area that simulates a website */}
           <div className="p-4 text-center text-gray-500 mb-8">
             <p>This is a simulated webpage environment</p>
           </div>
-          
+
           <button
             style={{
               position: "absolute",
@@ -147,7 +147,7 @@ const ChatBubbleDemo = () => {
               color: "white",
               transition: "all 0.3s ease",
             }}
-            onClick={() => setShowChat(!showChat)}
+            onClick={() => setShowFrame(!showFrame)}
           >
             <svg
               width="24"
@@ -186,8 +186,8 @@ const ChatBubbleDemo = () => {
               />
             </svg>
           </button>
-          
-          {showChat && (
+
+          {showFrame && (
             <div
               style={{
                 position: "absolute",
@@ -197,7 +197,7 @@ const ChatBubbleDemo = () => {
                 zIndex: 10,
               }}
             >
-              <ChatIframe url={chatUrl} />
+              <ChatIframe url={frameUrl} />
             </div>
           )}
         </div>
@@ -207,12 +207,12 @@ const ChatBubbleDemo = () => {
             <h4 className="font-semibold mb-2">Current Configuration:</h4>
             <pre className="bg-gray-800 text-gray-100 p-2 rounded-md overflow-x-auto">
 {`window.chatBubbleConfig = {
-  chatUrl: '${chatUrl}',
+  frameUrl: '${frameUrl}',
   buttonColor: '${buttonColor}',
   buttonPosition: '${buttonPosition}',
   buttonSize: '60px',
-  chatWidth: '320px',
-  chatHeight: '400px',
+  frameWidth: '320px',
+  frameHeight: '400px',
 };`}
             </pre>
           </div>

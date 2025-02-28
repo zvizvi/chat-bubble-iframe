@@ -6,16 +6,16 @@ import { Check, Copy } from "lucide-react";
 
 const ChatBubbleCode = () => {
   const [copied, setCopied] = useState(false);
-  
+
   const scriptCode = `<script>
   // Chat Bubble Configuration
   window.chatBubbleConfig = {
-    chatUrl: 'https://your-chat-url.com/', // URL to load in the iframe
+    frameUrl: 'https://your-iframe-url.com/', // URL to load in the iframe
     buttonColor: '#3b82f6', // Button background color
     buttonPosition: 'bottom-right', // Options: 'bottom-right', 'bottom-left', 'top-right', 'top-left'
     buttonSize: '60px', // Button size (width and height)
-    chatWidth: '320px', // Chat iframe width
-    chatHeight: '400px', // Chat iframe height
+    frameWidth: '320px', // open frame width
+    frameHeight: '400px', // open frame height
   };
 </script>
 <script src="https://your-website.com/chat-bubble.js"></script>`;
@@ -30,9 +30,9 @@ const ChatBubbleCode = () => {
     <Card className="p-4 bg-gray-50 border border-gray-200 overflow-hidden">
       <div className="flex justify-between items-center mb-2">
         <div className="text-sm font-mono text-gray-500">chat-bubble.js</div>
-        <Button 
-          variant="ghost" 
-          size="sm" 
+        <Button
+          variant="ghost"
+          size="sm"
           onClick={copyToClipboard}
           className="h-8 flex items-center gap-1.5 text-gray-600 hover:text-gray-900"
         >
@@ -58,12 +58,12 @@ const ChatBubbleCode = () => {
           <li>Customize the configuration options:</li>
         </ol>
         <div className="mt-3 pl-5 space-y-2">
-          <p><code className="bg-gray-200 px-1 py-0.5 rounded">chatUrl</code>: URL of your chat page that will load in the iframe</p>
+          <p><code className="bg-gray-200 px-1 py-0.5 rounded">frameUrl</code>: URL of your page that will load in the iframe</p>
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">buttonColor</code>: Any CSS color for the button's background</p>
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">buttonPosition</code>: Where the button appears on the page</p>
-          <p><code className="bg-gray-200 px-1 py-0.5 rounded">buttonSize</code>: Size of the chat button</p>
-          <p><code className="bg-gray-200 px-1 py-0.5 rounded">chatWidth</code>: Width of the chat iframe</p>
-          <p><code className="bg-gray-200 px-1 py-0.5 rounded">chatHeight</code>: Height of the chat iframe</p>
+          <p><code className="bg-gray-200 px-1 py-0.5 rounded">buttonSize</code>: Size of the trigger button</p>
+          <p><code className="bg-gray-200 px-1 py-0.5 rounded">frameWidth</code>: Width of the open frame</p>
+          <p><code className="bg-gray-200 px-1 py-0.5 rounded">frameHeight</code>: Height of the open frame</p>
         </div>
       </div>
     </Card>
