@@ -197,7 +197,7 @@ const ChatBubbleDemo = () => {
                 zIndex: 10,
               }}
             >
-              <ChatIframe />
+              <ChatIframe url={chatUrl} />
             </div>
           )}
         </div>

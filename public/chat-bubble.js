@@ -120,16 +120,21 @@
   iframeContainer.className = 'chat-iframe-container';
   document.body.appendChild(iframeContainer);
 
+  // Create iframe with the specified URL
+  let iframe = null;
+
   // Toggle chat function
   button.addEventListener('click', function() {
     if (iframeContainer.style.display === 'block') {
       iframeContainer.style.display = 'none';
     } else {
       iframeContainer.style.display = 'block';
-      if (!iframeContainer.querySelector('iframe')) {
-        const iframe = document.createElement('iframe');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
         iframe.className = 'chat-iframe';
         iframe.src = config.chatUrl;
+        iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-forms allow-popups');
+        iframe.setAttribute('title', 'Chat Frame');
         iframeContainer.appendChild(iframe);
       }
     }
