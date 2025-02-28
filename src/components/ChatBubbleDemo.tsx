@@ -6,6 +6,7 @@ import ChatIframe from "./ChatIframe";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Input } from "@/components/ui/input";
+import { Highlight, themes } from "prism-react-renderer";
 
 const ChatBubbleDemo = () => {
   const [showFrame, setShowFrame] = useState(false);
@@ -315,8 +316,9 @@ const ChatBubbleDemo = () => {
         <div className="mt-6 w-full max-w-2xl">
           <div className="bg-gray-50 p-4 rounded-md border border-gray-200 text-sm">
             <h4 className="font-semibold mb-2">Current Configuration:</h4>
-            <pre className="bg-gray-800 text-gray-100 p-2 rounded-md overflow-x-auto">
-              {`window.chatBubbleConfig = {
+            <Highlight
+              theme={themes.nightOwl}
+              code={`window.chatBubbleConfig = {
   frameUrl: '${frameUrl}',
   buttonColor: '${buttonColor}',
   buttonPosition: '${buttonPosition}',
@@ -324,7 +326,20 @@ const ChatBubbleDemo = () => {
   frameWidth: '320px',
   frameHeight: '400px',
 };`}
-            </pre>
+              language="javascript"
+            >
+              {({ className, style, tokens, getLineProps, getTokenProps }) => (
+                <pre className="bg-gray-900 text-gray-100 p-4 rounded-xl overflow-x-auto font-mono text-sm leading-relaxed" style={style}>
+                  {tokens.map((line, i) => (
+                    <div key={i} {...getLineProps({ line })}>
+                      {line.map((token, key) => (
+                        <span key={key} {...getTokenProps({ token })} />
+                      ))}
+                    </div>
+                  ))}
+                </pre>
+              )}
+            </Highlight>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
+import { Highlight, themes } from "prism-react-renderer";
 
 const ChatBubbleCode = () => {
   const [copied, setCopied] = useState(false);
@@ -48,7 +49,23 @@ const ChatBubbleCode = () => {
         </Button>
       </div>
       <pre className="text-sm overflow-x-auto p-4 bg-gray-900 text-gray-100 rounded-md">
-        <code>{scriptCode}</code>
+        <Highlight
+          theme={themes.nightOwl}
+          code={scriptCode}
+          language="javascript"
+        >
+          {({ className, style, tokens, getLineProps, getTokenProps }) => (
+            <pre className="bg-gray-900 text-gray-100 p-4 rounded-xl overflow-x-auto font-mono text-sm leading-relaxed" style={style}>
+              {tokens.map((line, i) => (
+                <div key={i} {...getLineProps({ line })}>
+                  {line.map((token, key) => (
+                    <span key={key} {...getTokenProps({ token })} />
+                  ))}
+                </div>
+              ))}
+            </pre>
+          )}
+        </Highlight>
       </pre>
       <div className="mt-4 text-sm text-gray-600">
         <p>To use this script:</p>
