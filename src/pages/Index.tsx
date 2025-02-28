@@ -21,8 +21,30 @@ const Index = () => {
         <section className="mb-16">
           <h2 className="text-2xl font-semibold mb-6">How to Use</h2>
           <div className="prose max-w-none">
-            <p>Add our script to your webpage and create a chat bubble with just a few lines of code:</p>
+            <p>Add our script to your webpage and customize it with just a few lines of code:</p>
             <ChatBubbleCode />
+          </div>
+        </section>
+
+        <section className="mb-16">
+          <h2 className="text-2xl font-semibold mb-6">Customization Options</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+              <h3 className="text-lg font-medium mb-3">Appearance</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li>• Change button color to match your brand</li>
+                <li>• Adjust button size for different devices</li>
+                <li>• Customize chat window dimensions</li>
+              </ul>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+              <h3 className="text-lg font-medium mb-3">Positioning</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li>• Place button in any corner of the screen</li>
+                <li>• Position chat window relative to the button</li>
+                <li>• Ensure visibility on all screen sizes</li>
+              </ul>
+            </div>
           </div>
         </section>
       </main>

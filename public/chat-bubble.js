@@ -1,16 +1,65 @@
 
+/**
+ * Chat Bubble Library
+ * A lightweight JavaScript library to embed a chat button on any webpage
+ */
 (function() {
+  // Default configuration
+  const defaultConfig = {
+    chatUrl: 'https://your-chat-url.com/',
+    buttonColor: '#3b82f6',
+    buttonPosition: 'bottom-right',
+    buttonSize: '60px',
+    chatWidth: '320px',
+    chatHeight: '400px',
+  };
+
+  // Merge default config with user config
+  const config = {
+    ...defaultConfig,
+    ...(window.chatBubbleConfig || {})
+  };
+
+  // Get position styles based on buttonPosition
+  function getPositionStyles(position) {
+    switch (position) {
+      case 'bottom-left':
+        return 'bottom: 20px; left: 20px;';
+      case 'top-right':
+        return 'top: 20px; right: 20px;';
+      case 'top-left':
+        return 'top: 20px; left: 20px;';
+      case 'bottom-right':
+      default:
+        return 'bottom: 20px; right: 20px;';
+    }
+  }
+
+  // Get chat container position based on button position
+  function getChatContainerPosition(position) {
+    switch (position) {
+      case 'bottom-left':
+        return 'bottom: 90px; left: 20px;';
+      case 'top-right':
+        return 'top: 90px; right: 20px;';
+      case 'top-left':
+        return 'top: 90px; left: 20px;';
+      case 'bottom-right':
+      default:
+        return 'bottom: 90px; right: 20px;';
+    }
+  }
+
   // Create stylesheet
   const style = document.createElement('style');
   style.innerHTML = `
     .chat-bubble-button {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
+      ${getPositionStyles(config.buttonPosition)}
+      width: ${config.buttonSize};
+      height: ${config.buttonSize};
       border-radius: 50%;
-      background-color: #3b82f6;
+      background-color: ${config.buttonColor};
       color: white;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       display: flex;
@@ -30,10 +79,9 @@
     }
     .chat-iframe-container {
       position: fixed;
-      bottom: 90px;
-      right: 20px;
-      width: 320px;
-      height: 400px;
+      ${getChatContainerPosition(config.buttonPosition)}
+      width: ${config.chatWidth};
+      height: ${config.chatHeight};
       z-index: 9999;
       overflow: hidden;
       border-radius: 12px;
@@ -81,7 +129,7 @@
       if (!iframeContainer.querySelector('iframe')) {
         const iframe = document.createElement('iframe');
         iframe.className = 'chat-iframe';
-        iframe.src = 'https://your-chat-url.com/'; // Replace with your chat URL
+        iframe.src = config.chatUrl;
         iframeContainer.appendChild(iframe);
       }
     }
