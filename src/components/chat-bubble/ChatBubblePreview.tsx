@@ -64,7 +64,7 @@ const ChatBubblePreview = ({
         return <ArrowUp />;
       case "arrow-down":
         return <ArrowDown />;
-      case "x":
+      case "close":
         return <X />;
       case "message-circle":
       default:
