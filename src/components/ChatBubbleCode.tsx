@@ -12,11 +12,14 @@ const ChatBubbleCode = () => {
   // Chat Bubble Configuration
   window.chatBubbleConfig = {
     frameUrl: 'https://your-iframe-url.com/', // URL to load in the iframe
+    frameTitle: 'Chat Support', // Title for the chat widget
     buttonColor: '#3b82f6', // Button background color
     buttonPosition: 'bottom-right', // Options: 'bottom-right', 'bottom-left', 'top-right', 'top-left'
     buttonSize: '60px', // Button size (width and height)
     frameWidth: '320px', // open frame width
     frameHeight: '400px', // open frame height
+    buttonIcon: 'message-circle', // Options: 'message-circle', 'arrow-up', 'arrow-down', 'close'
+    openButtonIcon: 'close', // Icon when chat is open. Options: 'message-circle', 'arrow-up', 'arrow-down', 'close'
   };
 </script>
 <script src="https://your-website.com/chat-bubble.js"></script>`;
@@ -76,11 +79,14 @@ const ChatBubbleCode = () => {
         </ol>
         <div className="mt-3 pl-5 space-y-2">
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">frameUrl</code>: URL of your page that will load in the iframe</p>
+          <p><code className="bg-gray-200 px-1 py-0.5 rounded">frameTitle</code>: Title for the chat widget</p>
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">buttonColor</code>: Any CSS color for the button's background</p>
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">buttonPosition</code>: Where the button appears on the page</p>
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">buttonSize</code>: Size of the trigger button</p>
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">frameWidth</code>: Width of the open frame</p>
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">frameHeight</code>: Height of the open frame</p>
+          <p><code className="bg-gray-200 px-1 py-0.5 rounded">buttonIcon</code>: Icon shown when chat is closed (message-circle, arrow-up, arrow-down, close)</p>
+          <p><code className="bg-gray-200 px-1 py-0.5 rounded">openButtonIcon</code>: Icon shown when chat is open (message-circle, arrow-up, arrow-down, close)</p>
         </div>
       </div>
     </Card>
