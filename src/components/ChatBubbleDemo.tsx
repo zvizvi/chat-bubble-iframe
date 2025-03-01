@@ -16,6 +16,8 @@ const ChatBubbleDemo = () => {
   const [frameWidth, setFrameWidth] = useState("300");
   const [frameHeight, setFrameHeight] = useState("360");
   const [frameTitle, setFrameTitle] = useState("Chat Support");
+  const [buttonIcon, setButtonIcon] = useState("message-circle");
+  const [openButtonIcon, setOpenButtonIcon] = useState("arrow-up");
 
   return (
     <Card className="p-6 md:p-8 rounded-lg shadow-sm bg-white border border-gray-100">
@@ -31,6 +33,10 @@ const ChatBubbleDemo = () => {
             setFrameUrl={setFrameUrl}
             frameTitle={frameTitle}
             setFrameTitle={setFrameTitle}
+            buttonIcon={buttonIcon}
+            setButtonIcon={setButtonIcon}
+            openButtonIcon={openButtonIcon}
+            setOpenButtonIcon={setOpenButtonIcon}
           />
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -64,6 +70,8 @@ const ChatBubbleDemo = () => {
           frameWidth={frameWidth}
           frameHeight={frameHeight}
           frameTitle={frameTitle}
+          buttonIcon={buttonIcon}
+          openButtonIcon={openButtonIcon}
         />
 
         <div className="mt-6 w-full max-w-2xl">
