@@ -1,14 +1,20 @@
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 
 interface ChatIframeProps {
   url?: string;
+  title?: string;
+  onClose?: () => void;
 }
 
-const ChatIframe = ({ url = "https://your-iframe-url.com/" }: ChatIframeProps) => {
+const ChatIframe = ({ 
+  url = "https://your-iframe-url.com/", 
+  title = "Chat Support",
+  onClose
+}: ChatIframeProps) => {
   // Check if URL is valid
   const isValidUrl = () => {
     try {
@@ -31,8 +37,13 @@ const ChatIframe = ({ url = "https://your-iframe-url.com/" }: ChatIframeProps) =
   return (
     <Card className="h-full flex flex-col overflow-hidden shadow-lg border border-gray-200 animate-fade-in">
       <div className="p-3 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
-        <div className="font-medium">Chat Support</div>
-        <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+        <div className="font-medium">{title}</div>
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          className="h-8 w-8 rounded-full"
+          onClick={onClose}
+        >
           <X className="h-4 w-4" />
         </Button>
       </div>

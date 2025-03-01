@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -15,8 +14,8 @@ const ChatBubbleDemo = () => {
   const [frameUrl, setFrameUrl] = useState("https://your-iframe-url.com/");
   const [frameWidth, setFrameWidth] = useState("300");
   const [frameHeight, setFrameHeight] = useState("360");
+  const [frameTitle, setFrameTitle] = useState("Chat Support");
 
-  // Get position styles based on buttonPosition
   const getPositionStyles = (position) => {
     switch (position) {
       case "bottom-left":
@@ -31,7 +30,6 @@ const ChatBubbleDemo = () => {
     }
   };
 
-  // Get chat container position based on button position
   const getChatContainerPosition = (position) => {
     switch (position) {
       case "bottom-left":
@@ -49,7 +47,6 @@ const ChatBubbleDemo = () => {
   const buttonPositionStyle = getPositionStyles(buttonPosition);
   const chatPositionStyle = getChatContainerPosition(buttonPosition);
 
-  // Color options with hover colors
   const colorOptions = [
     { value: "#3b82f6", label: "Blue", bgClass: "bg-blue-500", hoverClass: "hover:ring-blue-300" },
     { value: "#8B5CF6", label: "Purple", bgClass: "bg-purple-500", hoverClass: "hover:ring-purple-300" },
@@ -61,7 +58,6 @@ const ChatBubbleDemo = () => {
 
   const [customColor, setCustomColor] = useState("#000000");
 
-  // Position options with SVG icons
   const positionOptions = [
     {
       value: "bottom-right",
@@ -114,8 +110,7 @@ const ChatBubbleDemo = () => {
         </p>
 
         <div className="w-full max-w-3xl mb-12">
-          <div className="py-8">
-            <h3 className="text-lg font-medium mb-3">Frame URL</h3>
+          <div className="py-8 space-y-8">
             <div className="space-y-2">
               <Label htmlFor="chat-url">URL to open in iframe</Label>
               <Input
@@ -123,6 +118,17 @@ const ChatBubbleDemo = () => {
                 value={frameUrl}
                 onChange={(e) => setFrameUrl(e.target.value)}
                 placeholder="https://your-iframe-url.com/"
+                className="w-full"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="chat-title">Chat Widget Title</Label>
+              <Input
+                id="chat-title"
+                value={frameTitle}
+                onChange={(e) => setFrameTitle(e.target.value)}
+                placeholder="Chat Support"
                 className="w-full"
               />
             </div>
@@ -265,13 +271,11 @@ const ChatBubbleDemo = () => {
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
 
         <div className="relative w-full max-w-2xl bg-gray-50 rounded-lg p-4 md:p-8 border border-gray-200 min-h-[400px]">
-          {/* Demo area that simulates a website */}
           <div className="p-4 text-center text-gray-500 mb-8">
             <p>This is a simulated webpage environment</p>
           </div>
@@ -343,7 +347,11 @@ const ChatBubbleDemo = () => {
                 zIndex: 10,
               }}
             >
-              <ChatIframe url={frameUrl} />
+              <ChatIframe 
+                url={frameUrl} 
+                title={frameTitle}
+                onClose={() => setShowFrame(false)}
+              />
             </div>
           )}
         </div>
@@ -355,6 +363,7 @@ const ChatBubbleDemo = () => {
               theme={themes.palenight}
               code={`window.chatBubbleConfig = {
   frameUrl: '${frameUrl}',
+  frameTitle: '${frameTitle}',
   buttonColor: '${buttonColor}',
   buttonPosition: '${buttonPosition}',
   buttonSize: '60px',
