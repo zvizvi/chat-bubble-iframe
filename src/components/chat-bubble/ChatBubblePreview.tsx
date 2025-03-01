@@ -1,6 +1,6 @@
 
 import ChatIframe from "../ChatIframe";
-import { MessageCircle, ArrowDown, ArrowUp } from "lucide-react";
+import { MessageCircle, ArrowDown, ArrowUp, X } from "lucide-react";
 
 interface ChatBubblePreviewProps {
   showFrame: boolean;
@@ -64,6 +64,8 @@ const ChatBubblePreview = ({
         return <ArrowUp />;
       case "arrow-down":
         return <ArrowDown />;
+      case "x":
+        return <X />;
       case "message-circle":
       default:
         return <MessageCircle />;

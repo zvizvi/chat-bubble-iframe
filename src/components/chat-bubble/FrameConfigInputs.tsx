@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { MessageCircle, ArrowDown, ArrowUp } from "lucide-react";
+import { MessageCircle, ArrowDown, ArrowUp, X } from "lucide-react";
 
 interface FrameConfigInputsProps {
   frameUrl: string;
@@ -31,6 +31,7 @@ const FrameConfigInputs = ({
     { value: "message-circle", label: "Message Circle", icon: <MessageCircle className="h-4 w-4" /> },
     { value: "arrow-up", label: "Arrow Up", icon: <ArrowUp className="h-4 w-4" /> },
     { value: "arrow-down", label: "Arrow Down", icon: <ArrowDown className="h-4 w-4" /> },
+    { value: "x", label: "X", icon: <X className="h-4 w-4" /> },
   ];
 
   return (

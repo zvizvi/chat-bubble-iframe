@@ -17,7 +17,7 @@ const ChatBubbleDemo = () => {
   const [frameHeight, setFrameHeight] = useState("360");
   const [frameTitle, setFrameTitle] = useState("Chat Support");
   const [buttonIcon, setButtonIcon] = useState("message-circle");
-  const [openButtonIcon, setOpenButtonIcon] = useState("arrow-up");
+  const [openButtonIcon, setOpenButtonIcon] = useState("x");
 
   return (
     <Card className="p-6 md:p-8 rounded-lg shadow-sm bg-white border border-gray-100">
