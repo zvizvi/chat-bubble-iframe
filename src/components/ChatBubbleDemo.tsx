@@ -1,11 +1,12 @@
+
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import ChatIframe from "./ChatIframe";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Input } from "@/components/ui/input";
-import { Highlight, themes } from "prism-react-renderer";
+import PositionOptions from "./chat-bubble/PositionOptions";
+import ColorOptions from "./chat-bubble/ColorOptions";
+import FrameSizeOptions from "./chat-bubble/FrameSizeOptions";
+import FrameConfigInputs from "./chat-bubble/FrameConfigInputs";
+import ChatBubblePreview from "./chat-bubble/ChatBubblePreview";
+import ConfigDisplay from "./chat-bubble/ConfigDisplay";
 
 const ChatBubbleDemo = () => {
   const [showFrame, setShowFrame] = useState(false);
@@ -16,91 +17,6 @@ const ChatBubbleDemo = () => {
   const [frameHeight, setFrameHeight] = useState("360");
   const [frameTitle, setFrameTitle] = useState("Chat Support");
 
-  const getPositionStyles = (position) => {
-    switch (position) {
-      case "bottom-left":
-        return { bottom: "20px", left: "20px" };
-      case "top-right":
-        return { top: "20px", right: "20px" };
-      case "top-left":
-        return { top: "20px", left: "20px" };
-      case "bottom-right":
-      default:
-        return { bottom: "20px", right: "20px" };
-    }
-  };
-
-  const getChatContainerPosition = (position) => {
-    switch (position) {
-      case "bottom-left":
-        return { bottom: "100px", left: "20px" };
-      case "top-right":
-        return { top: "100px", right: "20px" };
-      case "top-left":
-        return { top: "100px", left: "20px" };
-      case "bottom-right":
-      default:
-        return { bottom: "100px", right: "20px" };
-    }
-  };
-
-  const buttonPositionStyle = getPositionStyles(buttonPosition);
-  const chatPositionStyle = getChatContainerPosition(buttonPosition);
-
-  const colorOptions = [
-    { value: "#3b82f6", label: "Blue", bgClass: "bg-blue-500", hoverClass: "hover:ring-blue-300" },
-    { value: "#8B5CF6", label: "Purple", bgClass: "bg-purple-500", hoverClass: "hover:ring-purple-300" },
-    { value: "#F97316", label: "Orange", bgClass: "bg-orange-500", hoverClass: "hover:ring-orange-300" },
-    { value: "#10B981", label: "Green", bgClass: "bg-green-500", hoverClass: "hover:ring-green-300" },
-    { value: "#F43F5E", label: "Red", bgClass: "bg-red-500", hoverClass: "hover:ring-red-300" },
-    { value: "custom", label: "Custom", bgClass: "", hoverClass: "hover:ring-gray-300" },
-  ];
-
-  const [customColor, setCustomColor] = useState("#000000");
-
-  const positionOptions = [
-    {
-      value: "bottom-right",
-      label: "Bottom Right",
-      icon: (
-        <svg className="w-8 h-8" viewBox="0 0 24 24" strokeWidth="1.5" fill="none">
-          <path d="M2 17.7143V6.28571C2 5.02335 2.99492 4 4.22222 4H19.7778C21.0051 4 22 5.02335 22 6.28571V17.7143C22 18.9767 21.0051 20 19.7778 20H4.22222C2.99492 20 2 18.9767 2 17.7143Z" stroke="currentColor" strokeWidth="1.5" />
-          <rect x="13" y="13" width="6" height="4" rx="1" fill="currentColor" />
-        </svg>
-      )
-    },
-    {
-      value: "bottom-left",
-      label: "Bottom Left",
-      icon: (
-        <svg className="w-8 h-8" viewBox="0 0 24 24" strokeWidth="1.5" fill="none">
-          <path d="M2 17.7143V6.28571C2 5.02335 2.99492 4 4.22222 4H19.7778C21.0051 4 22 5.02335 22 6.28571V17.7143C22 18.9767 21.0051 20 19.7778 20H4.22222C2.99492 20 2 18.9767 2 17.7143Z" stroke="currentColor" strokeWidth="1.5" />
-          <rect x="5" y="13" width="6" height="4" rx="1" fill="currentColor" />
-        </svg>
-      )
-    },
-    {
-      value: "top-right",
-      label: "Top Right",
-      icon: (
-        <svg className="w-8 h-8" viewBox="0 0 24 24" strokeWidth="1.5" fill="none">
-          <path d="M2 17.7143V6.28571C2 5.02335 2.99492 4 4.22222 4H19.7778C21.0051 4 22 5.02335 22 6.28571V17.7143C22 18.9767 21.0051 20 19.7778 20H4.22222C2.99492 20 2 18.9767 2 17.7143Z" stroke="currentColor" strokeWidth="1.5" />
-          <rect x="13" y="7" width="6" height="4" rx="1" fill="currentColor" />
-        </svg>
-      )
-    },
-    {
-      value: "top-left",
-      label: "Top Left",
-      icon: (
-        <svg className="w-8 h-8" viewBox="0 0 24 24" strokeWidth="1.5" fill="none">
-          <path d="M2 17.7143V6.28571C2 5.02335 2.99492 4 4.22222 4H19.7778C21.0051 4 22 5.02335 22 6.28571V17.7143C22 18.9767 21.0051 20 19.7778 20H4.22222C2.99492 20 2 18.9767 2 17.7143Z" stroke="currentColor" strokeWidth="1.5" />
-          <rect x="5" y="7" width="6" height="4" rx="1" fill="currentColor" />
-        </svg>
-      )
-    }
-  ];
-
   return (
     <Card className="p-6 md:p-8 rounded-lg shadow-sm bg-white border border-gray-100">
       <div className="flex flex-col items-center">
@@ -110,281 +26,55 @@ const ChatBubbleDemo = () => {
         </p>
 
         <div className="w-full max-w-3xl mb-12">
-          <div className="py-8 space-y-8">
-            <div className="space-y-2">
-              <Label htmlFor="chat-url">URL to open in iframe</Label>
-              <Input
-                id="chat-url"
-                value={frameUrl}
-                onChange={(e) => setFrameUrl(e.target.value)}
-                placeholder="https://your-iframe-url.com/"
-                className="w-full"
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="chat-title">Chat Widget Title</Label>
-              <Input
-                id="chat-title"
-                value={frameTitle}
-                onChange={(e) => setFrameTitle(e.target.value)}
-                placeholder="Chat Support"
-                className="w-full"
-              />
-            </div>
-          </div>
+          <FrameConfigInputs 
+            frameUrl={frameUrl}
+            setFrameUrl={setFrameUrl}
+            frameTitle={frameTitle}
+            setFrameTitle={setFrameTitle}
+          />
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              <h3 className="text-lg font-medium">Position</h3>
-              <RadioGroup
-                value={buttonPosition}
-                onValueChange={setButtonPosition}
-                className="grid grid-cols-2 gap-4"
-              >
-                {positionOptions.map((position) => (
-                  <div
-                    key={position.value}
-                    className={`relative p-4 border rounded-lg transition-all duration-200 ${buttonPosition === position.value ? 'border-gray-400 bg-gray-50' : 'border-gray-200 hover:border-gray-300'}`}
-                  >
-                    <RadioGroupItem
-                      value={position.value}
-                      id={position.value}
-                      className="sr-only"
-                    />
-                    <Label
-                      htmlFor={position.value}
-                      className="flex flex-col items-center cursor-pointer space-y-2"
-                    >
-                      <div className="text-gray-600">{position.icon}</div>
-                      <span className="text-sm font-medium">{position.label}</span>
-                    </Label>
-                  </div>
-                ))}
-              </RadioGroup>
-            </div>
+            <PositionOptions 
+              buttonPosition={buttonPosition}
+              setButtonPosition={setButtonPosition}
+            />
 
             <div className="space-y-9">
-              <div className="space-y-4">
-                <h3 className="text-lg font-medium">Color</h3>
-                <RadioGroup
-                  value={Object.values(colorOptions).some(opt => opt.value !== 'custom' && opt.value === buttonColor) ? buttonColor : 'custom'}
-                  onValueChange={(value) => {
-                    if (value === 'custom') {
-                      setButtonColor(customColor);
-                    } else {
-                      setButtonColor(value);
-                    }
-                  }}
-                  className="grid grid-cols-6 gap-4"
-                >
-                  {colorOptions.map((color) => (
-                    <div key={color.value} className="relative">
-                      <RadioGroupItem
-                        value={color.value}
-                        id={color.value}
-                        className="sr-only"
-                      />
-                      {color.value === 'custom' ? (
-                        <>
-                          <input
-                            type="color"
-                            id="custom-color-input"
-                            value={customColor}
-                            onChange={(e) => {
-                              setCustomColor(e.target.value);
-                              setButtonColor(e.target.value);
-                            }}
-                            className="sr-only"
-                          />
-                          <Label
-                            htmlFor="custom-color-input"
-                            className="cursor-pointer block text-center space-y-2"
-                            onClick={() => {
-                              document.getElementById('custom-color-input')?.click();
-                              setButtonColor(customColor);
-                            }}
-                          >
-                            <div
-                              className={`
-                              w-6 h-6 rounded-full mx-auto
-                              transition-all duration-200
-                              ring-2 ring-offset-2
-                              cursor-pointer
-                              ${!Object.values(colorOptions).some(opt => opt.value !== 'custom' && opt.value === buttonColor) ? 'ring-gray-400 scale-110' : 'ring-transparent'}
-                              ${color.hoverClass}
-                            `}
-                              style={{ backgroundColor: customColor }}
-                            />
-                            <span className="text-sm font-medium block">{color.label}</span>
-                          </Label>
-                        </>
-                      ) : (
-                        <Label
-                          htmlFor={color.value}
-                          className="cursor-pointer block text-center space-y-2"
-                        >
-                          <div
-                            className={`
-                            w-6 h-6 rounded-full mx-auto
-                            ${color.bgClass}
-                            transition-all duration-200
-                            ring-2 ring-offset-2
-                            ${buttonColor === color.value ? 'ring-gray-400 scale-110' : 'ring-transparent'}
-                            ${color.hoverClass}
-                          `}
-                          />
-                          <span className="text-sm font-medium block">{color.label}</span>
-                        </Label>
-                      )}
-                    </div>
-                  ))}
-                </RadioGroup>
-              </div>
+              <ColorOptions 
+                buttonColor={buttonColor}
+                setButtonColor={setButtonColor}
+              />
 
-              <div className="space-y-3">
-                <h3 className="text-lg font-medium">Frame Size</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="frame-width">Width (px)</Label>
-                    <Input
-                      id="frame-width"
-                      type="number"
-                      min="200"
-                      max="800"
-                      value={frameWidth}
-                      onChange={(e) => setFrameWidth(e.target.value)}
-                      className="w-full"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="frame-height">Height (px)</Label>
-                    <Input
-                      id="frame-height"
-                      type="number"
-                      min="200"
-                      max="800"
-                      value={frameHeight}
-                      onChange={(e) => setFrameHeight(e.target.value)}
-                      className="w-full"
-                    />
-                  </div>
-                </div>
-              </div>
+              <FrameSizeOptions 
+                frameWidth={frameWidth}
+                setFrameWidth={setFrameWidth}
+                frameHeight={frameHeight}
+                setFrameHeight={setFrameHeight}
+              />
             </div>
           </div>
         </div>
 
-        <div className="relative w-full max-w-2xl bg-gray-50 rounded-lg p-4 md:p-8 border border-gray-200 min-h-[400px]">
-          <div className="p-4 text-center text-gray-500 mb-8">
-            <p>This is a simulated webpage environment</p>
-          </div>
-
-          <button
-            style={{
-              position: "absolute",
-              ...buttonPositionStyle,
-              backgroundColor: buttonColor,
-              width: "60px",
-              height: "60px",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              border: "none",
-              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-              cursor: "pointer",
-              color: "white",
-              transition: "all 0.3s ease",
-            }}
-            onClick={() => setShowFrame(!showFrame)}
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M21 12C21 16.9706 16.9706 21 12 21C10.8976 21 9.82578 20.8204 8.82353 20.4857C8.74178 20.4594 8.65567 20.4472 8.57143 20.4472C8.4881 20.4472 8.40477 20.4594 8.32353 20.4857L3.58333 21.9857C3.22241 22.093 2.83138 21.8562 2.83333 21.4764V16.4671C2.83333 16.3682 2.80277 16.2713 2.74609 16.1868C1.65389 14.5489 1 12.576 1 10.5C1 5.52944 5.02944 1.5 10 1.5"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M17.5 7.5V8.5"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M13.5 7.5V8.5"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M9.5 7.5V8.5"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-
-          {showFrame && (
-            <div
-              style={{
-                position: "absolute",
-                ...chatPositionStyle,
-                width: `${frameWidth}px`,
-                height: `${frameHeight}px`,
-                zIndex: 10,
-              }}
-            >
-              <ChatIframe 
-                url={frameUrl} 
-                title={frameTitle}
-                onClose={() => setShowFrame(false)}
-              />
-            </div>
-          )}
-        </div>
+        <ChatBubblePreview 
+          showFrame={showFrame}
+          setShowFrame={setShowFrame}
+          buttonPosition={buttonPosition}
+          buttonColor={buttonColor}
+          frameUrl={frameUrl}
+          frameWidth={frameWidth}
+          frameHeight={frameHeight}
+          frameTitle={frameTitle}
+        />
 
         <div className="mt-6 w-full max-w-2xl">
-          <div className="bg-gray-50 p-4 rounded-md border border-gray-200 text-sm">
-            <h4 className="font-semibold mb-2">Current Configuration:</h4>
-            <Highlight
-              theme={themes.palenight}
-              code={`window.chatBubbleConfig = {
-  frameUrl: '${frameUrl}',
-  frameTitle: '${frameTitle}',
-  buttonColor: '${buttonColor}',
-  buttonPosition: '${buttonPosition}',
-  buttonSize: '60px',
-  frameWidth: '${frameWidth}px',
-  frameHeight: '${frameHeight}px',
-};`}
-              language="javascript"
-            >
-              {({ className, style, tokens, getLineProps, getTokenProps }) => (
-                <pre className="bg-gray-900 text-gray-100 p-4 rounded-xl overflow-x-auto font-mono text-sm leading-relaxed" style={style}>
-                  {tokens.map((line, i) => (
-                    <div key={i} {...getLineProps({ line })}>
-                      {line.map((token, key) => (
-                        <span key={key} {...getTokenProps({ token })} />
-                      ))}
-                    </div>
-                  ))}
-                </pre>
-              )}
-            </Highlight>
-          </div>
+          <ConfigDisplay 
+            frameUrl={frameUrl}
+            frameTitle={frameTitle}
+            buttonColor={buttonColor}
+            buttonPosition={buttonPosition}
+            frameWidth={frameWidth}
+            frameHeight={frameHeight}
+          />
         </div>
       </div>
     </Card>
