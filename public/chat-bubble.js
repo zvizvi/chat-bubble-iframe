@@ -83,7 +83,7 @@
     .chat-bubble-header {
       background-color: ${config.buttonColor};
       color: white;
-      padding: 10px 16px;
+      padding: 12px;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       font-size: 16px;
       font-weight: 500;
@@ -123,11 +123,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 24px;
-      height: 24px;
+      width: 32px;
+      height: 32px;
     }
     .chat-close-button:hover {
       opacity: 0.8;
+    }
+    .chat-close-button svg {
+      width: 18px;
+      height: 18px;
     }
     @keyframes chatFadeIn {
       from { opacity: 0; transform: translateY(10px); }
