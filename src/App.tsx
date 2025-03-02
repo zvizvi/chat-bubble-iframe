@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import PublicChat from "./pages/PublicChat";
 import MockedChat from "./pages/MockedChat";
 
 const queryClient = new QueryClient();
@@ -19,8 +18,7 @@ const App = () => (
       <BrowserRouter basename={"/chat-bubble-iframe/"}>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/chat" element={<PublicChat />} />
-          <Route path="/mocked-chat" element={<MockedChat />} />
+          <Route path="/chat" element={<MockedChat />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

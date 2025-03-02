@@ -31,16 +31,8 @@ const MockedChat = () => {
     }
   };
 
-  // Get query parameters for title
-  const urlParams = new URLSearchParams(window.location.search);
-  const title = urlParams.get("title") || "Chat Support";
-
   return (
     <div className="flex flex-col h-screen">
-      <div className="p-3 bg-gray-50 border-b border-gray-200">
-        <div className="font-medium">{title}</div>
-      </div>
-
       <div className="flex-1 p-4 overflow-y-auto bg-white">
         {messages.map((message) => (
           <div

@@ -16,7 +16,7 @@ const ChatIframe = ({
 }: ChatIframeProps) => {
   // Get the origin for creating the mocked chat URL
   const origin = window.location.origin;
-  const mockedChatUrl = `${origin}/chat-bubble-iframe/mocked-chat?title=${encodeURIComponent(title)}`;
+  const mockedChatUrl = `${origin}/chat-bubble-iframe/chat}`;
   
   // Use the provided URL or default to the mocked chat URL
   const iframeUrl = url || mockedChatUrl;
