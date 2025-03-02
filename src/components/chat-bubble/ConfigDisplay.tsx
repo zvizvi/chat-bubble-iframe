@@ -8,6 +8,8 @@ interface ConfigDisplayProps {
   buttonPosition: string;
   frameWidth: string;
   frameHeight: string;
+  buttonIcon: string;
+  openButtonIcon: string;
 }
 
 const ConfigDisplay = ({
@@ -16,7 +18,9 @@ const ConfigDisplay = ({
   buttonColor,
   buttonPosition,
   frameWidth,
-  frameHeight
+  frameHeight,
+  buttonIcon,
+  openButtonIcon
 }: ConfigDisplayProps) => {
   return (
     <div className="bg-gray-50 p-4 rounded-md border border-gray-200 text-sm">
@@ -31,6 +35,8 @@ const ConfigDisplay = ({
   buttonSize: '60px',
   frameWidth: '${frameWidth}px',
   frameHeight: '${frameHeight}px',
+  buttonIcon: '${buttonIcon}',
+  openButtonIcon: '${openButtonIcon}',
 };`}
         language="javascript"
       >
