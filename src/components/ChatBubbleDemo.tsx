@@ -82,6 +82,8 @@ const ChatBubbleDemo = () => {
             buttonPosition={buttonPosition}
             frameWidth={frameWidth}
             frameHeight={frameHeight}
+            buttonIcon={buttonIcon}
+            openButtonIcon={openButtonIcon}
           />
         </div>
       </div>
