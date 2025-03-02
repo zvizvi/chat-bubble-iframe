@@ -16,7 +16,7 @@ const ChatIframe = ({
 }: ChatIframeProps) => {
   // Get the origin for creating the mocked chat URL
   const origin = window.location.origin;
-  const mockedChatUrl = `${origin}/chat}`;
+  const mockedChatUrl = `${origin}/chat?forceHideBadge=true`;
 
   // Use the provided URL or default to the mocked chat URL
   const iframeUrl = url || mockedChatUrl;
