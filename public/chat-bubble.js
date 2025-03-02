@@ -76,7 +76,7 @@
       transform: scale(1.05);
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
     }
-    .chat-bubble-icon {
+    .chat-bubble-button svg {
       width: 24px;
       height: 24px;
     }
