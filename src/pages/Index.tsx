@@ -7,6 +7,7 @@ const Index = () => {
   // Get the current origin for the iframe URL
   const origin = window.location.origin;
   const publicChatUrl = `${origin}/chat-bubble-iframe/chat`;
+  const mockedChatUrl = `${origin}/chat-bubble-iframe/mocked-chat`;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
@@ -31,25 +32,36 @@ const Index = () => {
         </section>
 
         <section className="mb-16">
-          <h2 className="text-2xl font-semibold mb-6">Public Chat Page</h2>
+          <h2 className="text-2xl font-semibold mb-6">Public Chat Pages</h2>
           <div className="prose max-w-none mb-4">
-            <p>We provide a public chat page that you can embed in your iframe:</p>
+            <p>We provide two public chat pages that you can embed in your iframe:</p>
+            
+            <h3 className="text-xl font-medium mt-4">1. Real Chat Integration</h3>
             <code className="bg-gray-100 p-2 rounded block">{publicChatUrl}</code>
-            <p className="mt-4">You can customize it with query parameters:</p>
+            
+            <h3 className="text-xl font-medium mt-4">2. Demo/Mocked Chat</h3>
+            <code className="bg-gray-100 p-2 rounded block">{mockedChatUrl}</code>
+            
+            <p className="mt-4">You can customize both with query parameters:</p>
             <ul className="mt-2">
               <li><code>title</code> - Set the chat title (e.g. <code>{publicChatUrl}?title=Support</code>)</li>
             </ul>
           </div>
-          <div className="mt-4">
+          <div className="mt-4 flex flex-wrap gap-2">
             <Button 
               onClick={() => window.open(publicChatUrl, '_blank')}
-              className="mr-2"
             >
               Open Public Chat
             </Button>
             <Button 
+              onClick={() => window.open(mockedChatUrl, '_blank')}
+              variant="secondary"
+            >
+              Open Mocked Chat
+            </Button>
+            <Button 
               variant="outline"
-              onClick={() => window.open(`${publicChatUrl}?title=Custom Title`, '_blank')}
+              onClick={() => window.open(`${mockedChatUrl}?title=Custom Title`, '_blank')}
             >
               Open with Custom Title
             </Button>
