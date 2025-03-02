@@ -10,22 +10,12 @@ interface PositionOptionsProps {
 const PositionOptions = ({ buttonPosition, setButtonPosition }: PositionOptionsProps) => {
   const positionOptions = [
     {
-      value: "bottom-right",
-      label: "Bottom Right",
+      value: "top-left",
+      label: "Top Left",
       icon: (
         <svg className="w-8 h-8" viewBox="0 0 24 24" strokeWidth="1.5" fill="none">
           <path d="M2 17.7143V6.28571C2 5.02335 2.99492 4 4.22222 4H19.7778C21.0051 4 22 5.02335 22 6.28571V17.7143C22 18.9767 21.0051 20 19.7778 20H4.22222C2.99492 20 2 18.9767 2 17.7143Z" stroke="currentColor" strokeWidth="1.5" />
-          <rect x="13" y="13" width="6" height="4" rx="1" fill="currentColor" />
-        </svg>
-      )
-    },
-    {
-      value: "bottom-left",
-      label: "Bottom Left",
-      icon: (
-        <svg className="w-8 h-8" viewBox="0 0 24 24" strokeWidth="1.5" fill="none">
-          <path d="M2 17.7143V6.28571C2 5.02335 2.99492 4 4.22222 4H19.7778C21.0051 4 22 5.02335 22 6.28571V17.7143C22 18.9767 21.0051 20 19.7778 20H4.22222C2.99492 20 2 18.9767 2 17.7143Z" stroke="currentColor" strokeWidth="1.5" />
-          <rect x="5" y="13" width="6" height="4" rx="1" fill="currentColor" />
+          <rect x="5" y="7" width="6" height="4" rx="1" fill="currentColor" />
         </svg>
       )
     },
@@ -40,12 +30,22 @@ const PositionOptions = ({ buttonPosition, setButtonPosition }: PositionOptionsP
       )
     },
     {
-      value: "top-left",
-      label: "Top Left",
+      value: "bottom-left",
+      label: "Bottom Left",
       icon: (
         <svg className="w-8 h-8" viewBox="0 0 24 24" strokeWidth="1.5" fill="none">
           <path d="M2 17.7143V6.28571C2 5.02335 2.99492 4 4.22222 4H19.7778C21.0051 4 22 5.02335 22 6.28571V17.7143C22 18.9767 21.0051 20 19.7778 20H4.22222C2.99492 20 2 18.9767 2 17.7143Z" stroke="currentColor" strokeWidth="1.5" />
-          <rect x="5" y="7" width="6" height="4" rx="1" fill="currentColor" />
+          <rect x="5" y="13" width="6" height="4" rx="1" fill="currentColor" />
+        </svg>
+      )
+    },
+    {
+      value: "bottom-right",
+      label: "Bottom Right",
+      icon: (
+        <svg className="w-8 h-8" viewBox="0 0 24 24" strokeWidth="1.5" fill="none">
+          <path d="M2 17.7143V6.28571C2 5.02335 2.99492 4 4.22222 4H19.7778C21.0051 4 22 5.02335 22 6.28571V17.7143C22 18.9767 21.0051 20 19.7778 20H4.22222C2.99492 20 2 18.9767 2 17.7143Z" stroke="currentColor" strokeWidth="1.5" />
+          <rect x="13" y="13" width="6" height="4" rx="1" fill="currentColor" />
         </svg>
       )
     }
