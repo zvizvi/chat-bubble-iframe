@@ -10,6 +10,15 @@ const MockedChat = () => {
   ]);
   const [inputValue, setInputValue] = useState("");
 
+  const scroolToEnd = () => {
+    requestAnimationFrame(() => {
+      const chatContainer = document.getElementById("chat-container");
+      if (chatContainer) {
+        chatContainer.scrollTop = chatContainer.scrollHeight + 1000;
+      }
+    });
+  };
+
   const handleSendMessage = () => {
     if (inputValue.trim()) {
       // Add user message
@@ -20,6 +29,7 @@ const MockedChat = () => {
       
       // Clear input
       setInputValue("");
+      scroolToEnd();
       
       // Simulate bot response after 1 second
       setTimeout(() => {
@@ -27,13 +37,16 @@ const MockedChat = () => {
           ...prev,
           { id: Date.now() + 1, sender: "bot", text: "Thank you for your message! Our team will get back to you soon." }
         ]);
+        scroolToEnd();
       }, 1000);
     }
+    
+    document.getElementById("chat-input")?.focus();
   };
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="flex-1 p-4 overflow-y-auto bg-white">
+      <div className="flex-1 p-4 overflow-y-auto bg-white scroll-smooth" id="chat-container">
         {messages.map((message) => (
           <div
             key={message.id}
@@ -60,12 +73,14 @@ const MockedChat = () => {
             type="text"
             placeholder="Type a message..."
             value={inputValue}
+            autoFocus
             onChange={(e) => setInputValue(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+            onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
             className="flex-1 min-w-0 border border-gray-300 rounded-l-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            id="chat-input"
           />
           <Button 
-            className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600"
+            className="bg-blue-500 text-white px-4 py-2 rounded-none rounded-r-md hover:bg-blue-600"
             onClick={handleSendMessage}
           >
             Send
