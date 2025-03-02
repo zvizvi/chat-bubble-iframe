@@ -6,7 +6,7 @@ import ChatBubbleCode from "@/components/ChatBubbleCode";
 const Index = () => {
   // Get the current origin for the iframe URL
   const origin = window.location.origin;
-  const mockedChatUrl = `${origin}/chat-bubble-iframe/chat`;
+  const mockedChatUrl = `${origin}/chat`;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">

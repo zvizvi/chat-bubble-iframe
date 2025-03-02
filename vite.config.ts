@@ -9,7 +9,6 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  base: "/chat-bubble-iframe/",
   plugins: [
     react(),
     mode === 'development' &&
