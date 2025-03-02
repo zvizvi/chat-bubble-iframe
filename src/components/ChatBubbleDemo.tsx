@@ -8,11 +8,15 @@ import FrameConfigInputs from "./chat-bubble/FrameConfigInputs";
 import ChatBubblePreview from "./chat-bubble/ChatBubblePreview";
 import ConfigDisplay from "./chat-bubble/ConfigDisplay";
 
-const ChatBubbleDemo = () => {
+interface ChatBubbleDemoProps {
+  publicChatUrl?: string;
+}
+
+const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
   const [showFrame, setShowFrame] = useState(false);
   const [buttonPosition, setButtonPosition] = useState("bottom-right");
   const [buttonColor, setButtonColor] = useState("#3b82f6");
-  const [frameUrl, setFrameUrl] = useState("https://your-iframe-url.com/");
+  const [frameUrl, setFrameUrl] = useState(publicChatUrl || "https://your-iframe-url.com/");
   const [frameWidth, setFrameWidth] = useState("300");
   const [frameHeight, setFrameHeight] = useState("360");
   const [frameTitle, setFrameTitle] = useState("Chat Support");

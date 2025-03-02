@@ -4,6 +4,10 @@ import ChatBubbleDemo from "@/components/ChatBubbleDemo";
 import ChatBubbleCode from "@/components/ChatBubbleCode";
 
 const Index = () => {
+  // Get the current origin for the iframe URL
+  const origin = window.location.origin;
+  const publicChatUrl = `${origin}/chat-bubble-iframe/chat`;
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       <header className="py-8 px-6 md:px-12 lg:px-20">
@@ -15,7 +19,7 @@ const Index = () => {
 
       <main className="px-6 md:px-12 lg:px-20 max-w-7xl mx-auto">
         <section className="mb-16">
-          <ChatBubbleDemo />
+          <ChatBubbleDemo publicChatUrl={publicChatUrl} />
         </section>
 
         <section className="mb-16">
@@ -23,6 +27,32 @@ const Index = () => {
           <div className="prose max-w-none">
             <p>Add our script to your webpage and customize it with just a few lines of code:</p>
             <ChatBubbleCode />
+          </div>
+        </section>
+
+        <section className="mb-16">
+          <h2 className="text-2xl font-semibold mb-6">Public Chat Page</h2>
+          <div className="prose max-w-none mb-4">
+            <p>We provide a public chat page that you can embed in your iframe:</p>
+            <code className="bg-gray-100 p-2 rounded block">{publicChatUrl}</code>
+            <p className="mt-4">You can customize it with query parameters:</p>
+            <ul className="mt-2">
+              <li><code>title</code> - Set the chat title (e.g. <code>{publicChatUrl}?title=Support</code>)</li>
+            </ul>
+          </div>
+          <div className="mt-4">
+            <Button 
+              onClick={() => window.open(publicChatUrl, '_blank')}
+              className="mr-2"
+            >
+              Open Public Chat
+            </Button>
+            <Button 
+              variant="outline"
+              onClick={() => window.open(`${publicChatUrl}?title=Custom Title`, '_blank')}
+            >
+              Open with Custom Title
+            </Button>
           </div>
         </section>
 
