@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { SendHorizontal } from "lucide-react";
 
 const MockedChat = () => {
   const [messages, setMessages] = useState([
@@ -84,6 +85,7 @@ const MockedChat = () => {
             onClick={handleSendMessage}
           >
             Send
+            <SendHorizontal />
           </Button>
         </div>
       </div>
