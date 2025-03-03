@@ -18,8 +18,17 @@ const ChatBubbleCode = () => {
     buttonSize: '60px', // Button size (width and height)
     frameWidth: '320px', // open frame width
     frameHeight: '400px', // open frame height
-    buttonIcon: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 12C21 16.9706 16.9706 21 12 21C10.8976 21 9.82578 20.8204 8.82353 20.4857C8.74178 20.4594 8.65567 20.4472 8.57143 20.4472C8.4881 20.4472 8.40477 20.4594 8.32353 20.4857L3.58333 21.9857C3.22241 22.093 2.83138 21.8562 2.83333 21.4764V16.4671C2.83333 16.3682 2.80277 16.2713 2.74609 16.1868C1.65389 14.5489 1 12.576 1 10.5C1 5.52944 5.02944 1.5 10 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>', // SVG for the chat button when closed
-    openButtonIcon: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>', // SVG for the chat button when open
+    
+    // Button Icons - you can use either:
+    // 1. A simple keyword: 'message-circle', 'arrow-up', 'arrow-down', 'close'
+    // 2. Or a full SVG string as shown below
+    buttonIcon: 'message-circle', // Icon when chat is closed (using keyword)
+    // Alternative with SVG: 
+    // buttonIcon: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 12C21 16.9706 16.9706 21 12 21C10.8976 21 9.82578 20.8204 8.82353 20.4857C8.74178 20.4594 8.65567 20.4472 8.57143 20.4472C8.4881 20.4472 8.40477 20.4594 8.32353 20.4857L3.58333 21.9857C3.22241 22.093 2.83138 21.8562 2.83333 21.4764V16.4671C2.83333 16.3682 2.80277 16.2713 2.74609 16.1868C1.65389 14.5489 1 12.576 1 10.5C1 5.52944 5.02944 1.5 10 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    
+    openButtonIcon: 'close', // Icon when chat is open (using keyword)
+    // Alternative with SVG:
+    // openButtonIcon: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   };
 </script>
 <script src="https://your-website.com/chat-bubble.js"></script>`;
@@ -85,8 +94,8 @@ const ChatBubbleCode = () => {
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">buttonSize</code>: Size of the trigger button</p>
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">frameWidth</code>: Width of the open frame</p>
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">frameHeight</code>: Height of the open frame</p>
-          <p><code className="bg-gray-200 px-1 py-0.5 rounded">buttonIcon</code>: Full SVG markup for button icon when chat is closed</p>
-          <p><code className="bg-gray-200 px-1 py-0.5 rounded">openButtonIcon</code>: Full SVG markup for button icon when chat is open</p>
+          <p><code className="bg-gray-200 px-1 py-0.5 rounded">buttonIcon</code>: Icon for button when chat is closed (use a keyword or SVG string)</p>
+          <p><code className="bg-gray-200 px-1 py-0.5 rounded">openButtonIcon</code>: Icon for button when chat is open (use a keyword or SVG string)</p>
         </div>
       </div>
     </Card>

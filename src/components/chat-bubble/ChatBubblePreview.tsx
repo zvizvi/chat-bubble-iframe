@@ -1,6 +1,7 @@
 
 import ChatIframe from "../ChatIframe";
 import { MessageCircle, ArrowDown, ArrowUp, X } from "lucide-react";
+import React from "react";
 
 interface ChatBubblePreviewProps {
   showFrame: boolean;
@@ -59,17 +60,29 @@ const ChatBubblePreview = ({
   const getButtonIcon = () => {
     const iconName = showFrame ? openButtonIcon : buttonIcon;
     
-    switch (iconName) {
-      case "arrow-up":
-        return <ArrowUp />;
-      case "arrow-down":
-        return <ArrowDown />;
-      case "close":
-        return <X />;
-      case "message-circle":
-      default:
-        return <MessageCircle />;
+    // If icon is a keyword (not SVG), render the corresponding icon component
+    if (iconName === "message-circle" || iconName === "arrow-up" || 
+        iconName === "arrow-down" || iconName === "close") {
+      switch (iconName) {
+        case "arrow-up":
+          return <ArrowUp />;
+        case "arrow-down":
+          return <ArrowDown />;
+        case "close":
+          return <X />;
+        case "message-circle":
+        default:
+          return <MessageCircle />;
+      }
     }
+    
+    // If it's an SVG string, render it as HTML
+    if (typeof iconName === 'string' && iconName.trim().startsWith('<svg')) {
+      return <span dangerouslySetInnerHTML={{ __html: iconName }} />;
+    }
+    
+    // Fallback to message-circle
+    return <MessageCircle />;
   };
 
   const buttonPositionStyle = getPositionStyles(buttonPosition);
