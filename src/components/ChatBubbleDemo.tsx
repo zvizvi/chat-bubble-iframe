@@ -17,7 +17,7 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
   const [showFrame, setShowFrame] = useState(false);
   const [buttonPosition, setButtonPosition] = useState("bottom-right");
   const [buttonBackground, setButtonBackground] = useState("#3b82f6");
-  const [buttonColor, setButtonColor] = useState("#FFFFFF");
+  const [buttonColor, setButtonColor] = useState("#ffffff");
   const [frameUrl, setFrameUrl] = useState(publicChatUrl || "https://your-iframe-url.com/");
   const [frameWidth, setFrameWidth] = useState("300");
   const [frameHeight, setFrameHeight] = useState("360");
@@ -38,7 +38,7 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
         </p>
 
         <div className="w-full max-w-3xl mb-12">
-          <FrameConfigInputs 
+          <FrameConfigInputs
             frameUrl={frameUrl}
             setFrameUrl={setFrameUrl}
             frameTitle={frameTitle}
@@ -50,18 +50,18 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
           />
 
           <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <PositionOptions 
+            <PositionOptions
               buttonPosition={buttonPosition}
               setButtonPosition={setButtonPosition}
             />
 
             <div className="space-y-9">
-              <ColorOptions 
+              <ColorOptions
                 buttonBackground={buttonBackground}
                 setButtonBackground={setButtonBackground}
               />
 
-              <FrameSizeOptions 
+              <FrameSizeOptions
                 frameWidth={frameWidth}
                 setFrameWidth={setFrameWidth}
                 frameHeight={frameHeight}
@@ -84,7 +84,7 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
           />
         </div>
 
-        <ChatBubblePreview 
+        <ChatBubblePreview
           showFrame={showFrame}
           setShowFrame={setShowFrame}
           buttonPosition={buttonPosition}
@@ -103,7 +103,7 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
         />
 
         <div className="mt-6 w-full max-w-2xl">
-          <ConfigDisplay 
+          <ConfigDisplay
             frameUrl={frameUrl}
             frameTitle={frameTitle}
             buttonBackground={buttonBackground}

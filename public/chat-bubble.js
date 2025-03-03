@@ -8,7 +8,7 @@
     frameUrl: 'https://your-iframe-url.com/',
     frameTitle: 'Chat Support',
     buttonBackground: '#3b82f6',
-    buttonColor: '#FFFFFF',
+    buttonColor: '#ffffff',
     buttonPosition: 'bottom-right',
     buttonSize: '60px',
     frameWidth: '320px',
@@ -60,10 +60,10 @@
   // Get icon content based on the icon name or SVG string
   function getIconContent(icon) {
     if (typeof icon !== 'string') return defaultIcons['message-circle'];
-    
+
     // If it's an SVG string, return it directly
     if (icon.trim().startsWith('<svg')) return icon;
-    
+
     // Otherwise, look up icon by name or return default
     return defaultIcons[icon] || defaultIcons['message-circle'];
   }
@@ -186,7 +186,7 @@
   // Create iframe with the specified URL
   let iframe = null;
   let chatOpen = false;
-  
+
   // Initialize the iframe
   function initIframe() {
     if (!iframe) {
@@ -195,22 +195,22 @@
         // Create header with title
         const headerElement = document.createElement('div');
         headerElement.className = 'chat-bubble-header';
-        
+
         // Add title
         const titleElement = document.createElement('div');
         titleElement.textContent = config.frameTitle;
-        
+
         // Add close button in header
         const closeButton = document.createElement('button');
         closeButton.className = 'chat-close-button';
         closeButton.innerHTML = defaultIcons['close'];
         closeButton.addEventListener('click', toggleChat);
-        
+
         headerElement.appendChild(titleElement);
         headerElement.appendChild(closeButton);
         iframeContainer.appendChild(headerElement);
       }
-      
+
       // Create and add iframe
       iframe = document.createElement('iframe');
       iframe.className = 'chat-iframe';
@@ -229,11 +229,11 @@
   // Toggle chat function
   function toggleChat() {
     chatOpen = !chatOpen;
-    
+
     if (chatOpen) {
       // Initialize the iframe if not already done
       initIframe();
-      
+
       // Show the container
       iframeContainer.classList.add('visible');
       button.innerHTML = getIconContent(config.openButtonIcon);
@@ -241,7 +241,7 @@
       // Hide the container
       iframeContainer.classList.remove('visible');
       button.innerHTML = getIconContent(config.buttonIcon);
-      
+
       // If not persisting, we could remove the iframe, but we're keeping it for now
       // If you want to remove it: if (!config.persistFrame) { ... }
     }

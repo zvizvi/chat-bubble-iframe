@@ -26,7 +26,7 @@ const ChatBubblePreview = ({
   setShowFrame,
   buttonPosition,
   buttonBackground,
-  buttonColor = "#FFFFFF",
+  buttonColor = "#ffffff",
   frameUrl,
   frameWidth,
   frameHeight,
