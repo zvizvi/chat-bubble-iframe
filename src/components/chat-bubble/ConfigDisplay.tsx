@@ -13,6 +13,11 @@ interface ConfigDisplayProps {
   frameHeight: string;
   buttonIcon: string;
   openButtonIcon: string;
+  hideHeader?: boolean;
+  headerBackground?: string;
+  headerColor?: string;
+  buttonTextColor?: string;
+  persistFrame?: boolean;
 }
 
 const ConfigDisplay = ({
@@ -23,7 +28,12 @@ const ConfigDisplay = ({
   frameWidth,
   frameHeight,
   buttonIcon,
-  openButtonIcon
+  openButtonIcon,
+  hideHeader = false,
+  headerBackground = "#f9fafb",
+  headerColor = "#000000",
+  buttonTextColor = "#FFFFFF",
+  persistFrame = false
 }: ConfigDisplayProps) => {
   const { toast } = useToast();
 
@@ -50,12 +60,17 @@ window.chatBubbleConfig = {
   frameUrl: '${frameUrl}',
   frameTitle: '${frameTitle}',
   buttonColor: '${buttonColor}',
+  buttonTextColor: '${buttonTextColor}',
   buttonPosition: '${buttonPosition}',
   buttonSize: '60px',
   frameWidth: '${frameWidth}px',
   frameHeight: '${frameHeight}px',
   buttonIcon: ${formatIconConfig(buttonIcon)}, // Can be 'message-circle', 'arrow-up', 'arrow-down', 'close' or an SVG string
   openButtonIcon: ${formatIconConfig(openButtonIcon)}, // Can be 'message-circle', 'arrow-up', 'arrow-down', 'close' or an SVG string
+  hideHeader: ${hideHeader}, // When true, hides the header completely
+  headerBackground: '${headerBackground}', // Background color for the header
+  headerColor: '${headerColor}', // Text color for the header
+  persistFrame: ${persistFrame} // When true, keeps the iframe alive when chat is closed
 };
 
 // Then import the chat-bubble.js script

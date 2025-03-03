@@ -7,12 +7,20 @@ interface ChatIframeProps {
   url?: string;
   title?: string;
   onClose?: () => void;
+  hideHeader?: boolean;
+  headerBackground?: string;
+  headerColor?: string;
+  persist?: boolean;
 }
 
 const ChatIframe = ({
   url,
   title = "Chat Support",
-  onClose
+  onClose,
+  hideHeader = false,
+  headerBackground,
+  headerColor,
+  persist = false
 }: ChatIframeProps) => {
   // Get the origin for creating the mocked chat URL
   const origin = window.location.origin;
@@ -23,17 +31,25 @@ const ChatIframe = ({
 
   return (
     <Card className="h-full flex flex-col overflow-hidden shadow-lg border border-gray-200 animate-fade-in">
-      <div className="p-3 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
-        <div className="font-medium">{title}</div>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="h-8 w-8 rounded-full"
-          onClick={onClose}
+      {!hideHeader && (
+        <div 
+          className="p-3 border-b border-gray-200 flex justify-between items-center"
+          style={{ 
+            backgroundColor: headerBackground || "#f9fafb", // equivalent to bg-gray-50
+            color: headerColor || "inherit"
+          }}
         >
-          <X className="h-4 w-4" />
-        </Button>
-      </div>
+          <div className="font-medium">{title}</div>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8 rounded-full"
+            onClick={onClose}
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        </div>
+      )}
 
       <div className="flex-1 overflow-hidden">
         <iframe

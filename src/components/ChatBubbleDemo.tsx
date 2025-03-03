@@ -7,6 +7,7 @@ import FrameSizeOptions from "./chat-bubble/FrameSizeOptions";
 import FrameConfigInputs from "./chat-bubble/FrameConfigInputs";
 import ChatBubblePreview from "./chat-bubble/ChatBubblePreview";
 import ConfigDisplay from "./chat-bubble/ConfigDisplay";
+import HeaderOptions from "./chat-bubble/HeaderOptions";
 
 interface ChatBubbleDemoProps {
   publicChatUrl?: string;
@@ -16,12 +17,17 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
   const [showFrame, setShowFrame] = useState(false);
   const [buttonPosition, setButtonPosition] = useState("bottom-right");
   const [buttonColor, setButtonColor] = useState("#3b82f6");
+  const [buttonTextColor, setButtonTextColor] = useState("#FFFFFF");
   const [frameUrl, setFrameUrl] = useState(publicChatUrl || "https://your-iframe-url.com/");
   const [frameWidth, setFrameWidth] = useState("300");
   const [frameHeight, setFrameHeight] = useState("360");
   const [frameTitle, setFrameTitle] = useState("Chat Support");
   const [buttonIcon, setButtonIcon] = useState("message-circle");
   const [openButtonIcon, setOpenButtonIcon] = useState("close");
+  const [hideHeader, setHideHeader] = useState(false);
+  const [headerBackground, setHeaderBackground] = useState("#f9fafb");
+  const [headerColor, setHeaderColor] = useState("#000000");
+  const [persistFrame, setPersistFrame] = useState(false);
 
   return (
     <Card className="p-6 md:p-8 rounded-lg shadow-sm bg-white border border-gray-100">
@@ -43,7 +49,7 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
             setOpenButtonIcon={setOpenButtonIcon}
           />
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
             <PositionOptions 
               buttonPosition={buttonPosition}
               setButtonPosition={setButtonPosition}
@@ -63,6 +69,19 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
               />
             </div>
           </div>
+
+          <HeaderOptions
+            hideHeader={hideHeader}
+            setHideHeader={setHideHeader}
+            headerBackground={headerBackground}
+            setHeaderBackground={setHeaderBackground}
+            headerColor={headerColor}
+            setHeaderColor={setHeaderColor}
+            buttonTextColor={buttonTextColor}
+            setButtonTextColor={setButtonTextColor}
+            persistFrame={persistFrame}
+            setPersistFrame={setPersistFrame}
+          />
         </div>
 
         <ChatBubblePreview 
@@ -70,12 +89,17 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
           setShowFrame={setShowFrame}
           buttonPosition={buttonPosition}
           buttonColor={buttonColor}
+          buttonTextColor={buttonTextColor}
           frameUrl={frameUrl}
           frameWidth={frameWidth}
           frameHeight={frameHeight}
           frameTitle={frameTitle}
           buttonIcon={buttonIcon}
           openButtonIcon={openButtonIcon}
+          hideHeader={hideHeader}
+          headerBackground={headerBackground}
+          headerColor={headerColor}
+          persistFrame={persistFrame}
         />
 
         <div className="mt-6 w-full max-w-2xl">
@@ -88,6 +112,11 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
             frameHeight={frameHeight}
             buttonIcon={buttonIcon}
             openButtonIcon={openButtonIcon}
+            hideHeader={hideHeader}
+            headerBackground={headerBackground}
+            headerColor={headerColor}
+            buttonTextColor={buttonTextColor}
+            persistFrame={persistFrame}
           />
         </div>
       </div>

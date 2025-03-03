@@ -8,12 +8,17 @@ interface ChatBubblePreviewProps {
   setShowFrame: (show: boolean) => void;
   buttonPosition: string;
   buttonColor: string;
+  buttonTextColor: string;
   frameUrl: string;
   frameWidth: string;
   frameHeight: string;
   frameTitle: string;
   buttonIcon: string;
   openButtonIcon: string;
+  hideHeader: boolean;
+  headerBackground: string;
+  headerColor: string;
+  persistFrame: boolean;
 }
 
 const ChatBubblePreview = ({
@@ -21,12 +26,17 @@ const ChatBubblePreview = ({
   setShowFrame,
   buttonPosition,
   buttonColor,
+  buttonTextColor = "#FFFFFF",
   frameUrl,
   frameWidth,
   frameHeight,
   frameTitle,
   buttonIcon,
-  openButtonIcon
+  openButtonIcon,
+  hideHeader = false,
+  headerBackground = "#f9fafb",
+  headerColor = "#000000",
+  persistFrame = false
 }: ChatBubblePreviewProps) => {
   
   const getPositionStyles = (position: string) => {
@@ -99,6 +109,7 @@ const ChatBubblePreview = ({
           position: "absolute",
           ...buttonPositionStyle,
           backgroundColor: buttonColor,
+          color: buttonTextColor,
           width: "60px",
           height: "60px",
           borderRadius: "50%",
@@ -108,7 +119,6 @@ const ChatBubblePreview = ({
           border: "none",
           boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
           cursor: "pointer",
-          color: "white",
           transition: "all 0.3s ease",
         }}
         onClick={() => setShowFrame(!showFrame)}
@@ -116,7 +126,7 @@ const ChatBubblePreview = ({
         {getButtonIcon()}
       </button>
 
-      {showFrame && (
+      {(showFrame || (persistFrame && !showFrame)) && (
         <div
           style={{
             position: "absolute",
@@ -124,12 +134,19 @@ const ChatBubblePreview = ({
             width: `${frameWidth}px`,
             height: `${frameHeight}px`,
             zIndex: 10,
+            visibility: showFrame ? "visible" : "hidden",
+            opacity: showFrame ? 1 : 0,
+            transition: "opacity 0.3s ease, visibility 0.3s ease",
           }}
         >
           <ChatIframe 
             url={frameUrl} 
             title={frameTitle}
             onClose={() => setShowFrame(false)}
+            hideHeader={hideHeader}
+            headerBackground={headerBackground}
+            headerColor={headerColor}
+            persist={persistFrame}
           />
         </div>
       )}
