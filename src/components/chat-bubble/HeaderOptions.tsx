@@ -11,8 +11,8 @@ interface HeaderOptionsProps {
   setHeaderBackground: (color: string) => void;
   headerColor: string;
   setHeaderColor: (color: string) => void;
-  buttonTextColor: string;
-  setButtonTextColor: (color: string) => void;
+  buttonColor: string;
+  setButtonColor: (color: string) => void;
   persistFrame: boolean;
   setPersistFrame: (persist: boolean) => void;
 }
@@ -24,8 +24,8 @@ const HeaderOptions = ({
   setHeaderBackground,
   headerColor,
   setHeaderColor,
-  buttonTextColor,
-  setButtonTextColor,
+  buttonColor,
+  setButtonColor,
   persistFrame,
   setPersistFrame
 }: HeaderOptionsProps) => {
@@ -104,13 +104,13 @@ const HeaderOptions = ({
         <div className="flex space-x-2">
           <div 
             className="w-10 h-10 rounded border"
-            style={{ backgroundColor: buttonTextColor }}
+            style={{ backgroundColor: buttonColor }}
           ></div>
           <Input
             id="button-text-color"
             type="text"
-            value={buttonTextColor}
-            onChange={(e) => setButtonTextColor(e.target.value)}
+            value={buttonColor}
+            onChange={(e) => setButtonColor(e.target.value)}
             placeholder="#FFFFFF"
             className="flex-1"
           />

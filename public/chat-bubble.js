@@ -7,8 +7,8 @@
   const defaultConfig = {
     frameUrl: 'https://your-iframe-url.com/',
     frameTitle: 'Chat Support',
-    buttonColor: '#3b82f6',
-    buttonTextColor: '#FFFFFF',
+    buttonBackground: '#3b82f6',
+    buttonColor: '#FFFFFF',
     buttonPosition: 'bottom-right',
     buttonSize: '60px',
     frameWidth: '320px',
@@ -85,8 +85,8 @@
       width: ${config.buttonSize};
       height: ${config.buttonSize};
       border-radius: 50%;
-      background-color: ${config.buttonColor};
-      color: ${config.buttonTextColor};
+      background-color: ${config.buttonBackground};
+      color: ${config.buttonColor};
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       display: flex;
       align-items: center;

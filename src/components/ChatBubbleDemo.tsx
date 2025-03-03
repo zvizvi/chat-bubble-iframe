@@ -16,8 +16,8 @@ interface ChatBubbleDemoProps {
 const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
   const [showFrame, setShowFrame] = useState(false);
   const [buttonPosition, setButtonPosition] = useState("bottom-right");
-  const [buttonColor, setButtonColor] = useState("#3b82f6");
-  const [buttonTextColor, setButtonTextColor] = useState("#FFFFFF");
+  const [buttonBackground, setButtonBackground] = useState("#3b82f6");
+  const [buttonColor, setButtonColor] = useState("#FFFFFF");
   const [frameUrl, setFrameUrl] = useState(publicChatUrl || "https://your-iframe-url.com/");
   const [frameWidth, setFrameWidth] = useState("300");
   const [frameHeight, setFrameHeight] = useState("360");
@@ -57,8 +57,8 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
 
             <div className="space-y-9">
               <ColorOptions 
-                buttonColor={buttonColor}
-                setButtonColor={setButtonColor}
+                buttonBackground={buttonBackground}
+                setButtonBackground={setButtonBackground}
               />
 
               <FrameSizeOptions 
@@ -77,8 +77,8 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
             setHeaderBackground={setHeaderBackground}
             headerColor={headerColor}
             setHeaderColor={setHeaderColor}
-            buttonTextColor={buttonTextColor}
-            setButtonTextColor={setButtonTextColor}
+            buttonColor={buttonColor}
+            setButtonColor={setButtonColor}
             persistFrame={persistFrame}
             setPersistFrame={setPersistFrame}
           />
@@ -88,8 +88,8 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
           showFrame={showFrame}
           setShowFrame={setShowFrame}
           buttonPosition={buttonPosition}
+          buttonBackground={buttonBackground}
           buttonColor={buttonColor}
-          buttonTextColor={buttonTextColor}
           frameUrl={frameUrl}
           frameWidth={frameWidth}
           frameHeight={frameHeight}
@@ -106,7 +106,7 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
           <ConfigDisplay 
             frameUrl={frameUrl}
             frameTitle={frameTitle}
-            buttonColor={buttonColor}
+            buttonBackground={buttonBackground}
             buttonPosition={buttonPosition}
             frameWidth={frameWidth}
             frameHeight={frameHeight}
@@ -115,7 +115,7 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
             hideHeader={hideHeader}
             headerBackground={headerBackground}
             headerColor={headerColor}
-            buttonTextColor={buttonTextColor}
+            buttonColor={buttonColor}
             persistFrame={persistFrame}
           />
         </div>

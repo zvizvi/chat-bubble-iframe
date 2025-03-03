@@ -7,7 +7,7 @@ import { useToast } from "@/components/ui/use-toast";
 interface ConfigDisplayProps {
   frameUrl: string;
   frameTitle: string;
-  buttonColor: string;
+  buttonBackground: string;
   buttonPosition: string;
   frameWidth: string;
   frameHeight: string;
@@ -16,14 +16,14 @@ interface ConfigDisplayProps {
   hideHeader?: boolean;
   headerBackground?: string;
   headerColor?: string;
-  buttonTextColor?: string;
+  buttonColor?: string;
   persistFrame?: boolean;
 }
 
 const ConfigDisplay = ({
   frameUrl,
   frameTitle,
-  buttonColor,
+  buttonBackground,
   buttonPosition,
   frameWidth,
   frameHeight,
@@ -32,7 +32,7 @@ const ConfigDisplay = ({
   hideHeader = false,
   headerBackground = "#f9fafb",
   headerColor = "#000000",
-  buttonTextColor = "#FFFFFF",
+  buttonColor = "#FFFFFF",
   persistFrame = false
 }: ConfigDisplayProps) => {
   const { toast } = useToast();
@@ -59,8 +59,8 @@ const ConfigDisplay = ({
 window.chatBubbleConfig = {
   frameUrl: '${frameUrl}',
   frameTitle: '${frameTitle}',
+  buttonBackground: '${buttonBackground}',
   buttonColor: '${buttonColor}',
-  buttonTextColor: '${buttonTextColor}',
   buttonPosition: '${buttonPosition}',
   buttonSize: '60px',
   frameWidth: '${frameWidth}px',

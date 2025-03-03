@@ -7,8 +7,8 @@ interface ChatBubblePreviewProps {
   showFrame: boolean;
   setShowFrame: (show: boolean) => void;
   buttonPosition: string;
+  buttonBackground: string;
   buttonColor: string;
-  buttonTextColor: string;
   frameUrl: string;
   frameWidth: string;
   frameHeight: string;
@@ -25,8 +25,8 @@ const ChatBubblePreview = ({
   showFrame,
   setShowFrame,
   buttonPosition,
-  buttonColor,
-  buttonTextColor = "#FFFFFF",
+  buttonBackground,
+  buttonColor = "#FFFFFF",
   frameUrl,
   frameWidth,
   frameHeight,
@@ -108,8 +108,8 @@ const ChatBubblePreview = ({
         style={{
           position: "absolute",
           ...buttonPositionStyle,
-          backgroundColor: buttonColor,
-          color: buttonTextColor,
+          backgroundColor: buttonBackground,
+          color: buttonColor,
           width: "60px",
           height: "60px",
           borderRadius: "50%",

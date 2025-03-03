@@ -4,11 +4,11 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 interface ColorOptionsProps {
-  buttonColor: string;
-  setButtonColor: (color: string) => void;
+  buttonBackground: string;
+  setButtonBackground: (color: string) => void;
 }
 
-const ColorOptions = ({ buttonColor, setButtonColor }: ColorOptionsProps) => {
+const ColorOptions = ({ buttonBackground, setButtonBackground }: ColorOptionsProps) => {
   const colorOptions = [
     { value: "#3b82f6", label: "Blue", bgClass: "bg-blue-500", hoverClass: "hover:ring-blue-300" },
     { value: "#8B5CF6", label: "Purple", bgClass: "bg-purple-500", hoverClass: "hover:ring-purple-300" },
@@ -24,12 +24,12 @@ const ColorOptions = ({ buttonColor, setButtonColor }: ColorOptionsProps) => {
     <div className="space-y-4">
       <h3 className="text-lg font-medium">Color</h3>
       <RadioGroup
-        value={Object.values(colorOptions).some(opt => opt.value !== 'custom' && opt.value === buttonColor) ? buttonColor : 'custom'}
+        value={Object.values(colorOptions).some(opt => opt.value !== 'custom' && opt.value === buttonBackground) ? buttonBackground : 'custom'}
         onValueChange={(value) => {
           if (value === 'custom') {
-            setButtonColor(customColor);
+            setButtonBackground(customColor);
           } else {
-            setButtonColor(value);
+            setButtonBackground(value);
           }
         }}
         className="grid grid-cols-6 gap-4"
@@ -49,7 +49,7 @@ const ColorOptions = ({ buttonColor, setButtonColor }: ColorOptionsProps) => {
                   value={customColor}
                   onChange={(e) => {
                     setCustomColor(e.target.value);
-                    setButtonColor(e.target.value);
+                    setButtonBackground(e.target.value);
                   }}
                   className="sr-only"
                 />
@@ -58,7 +58,7 @@ const ColorOptions = ({ buttonColor, setButtonColor }: ColorOptionsProps) => {
                   className="cursor-pointer block text-center space-y-2"
                   onClick={() => {
                     document.getElementById('custom-color-input')?.click();
-                    setButtonColor(customColor);
+                    setButtonBackground(customColor);
                   }}
                 >
                   <div
@@ -67,7 +67,7 @@ const ColorOptions = ({ buttonColor, setButtonColor }: ColorOptionsProps) => {
                     transition-all duration-200
                     ring-2 ring-offset-2
                     cursor-pointer
-                    ${!Object.values(colorOptions).some(opt => opt.value !== 'custom' && opt.value === buttonColor) ? 'ring-gray-400 scale-110' : 'ring-transparent'}
+                    ${!Object.values(colorOptions).some(opt => opt.value !== 'custom' && opt.value === buttonBackground) ? 'ring-gray-400 scale-110' : 'ring-transparent'}
                     ${color.hoverClass}
                   `}
                     style={{ backgroundColor: customColor }}
@@ -86,7 +86,7 @@ const ColorOptions = ({ buttonColor, setButtonColor }: ColorOptionsProps) => {
                   ${color.bgClass}
                   transition-all duration-200
                   ring-2 ring-offset-2
-                  ${buttonColor === color.value ? 'ring-gray-400 scale-110' : 'ring-transparent'}
+                  ${buttonBackground === color.value ? 'ring-gray-400 scale-110' : 'ring-transparent'}
                   ${color.hoverClass}
                 `}
                 />
