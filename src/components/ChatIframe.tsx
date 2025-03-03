@@ -14,27 +14,20 @@ interface ChatIframeProps {
 }
 
 const ChatIframe = ({
-  url,
-  title = "Chat Support",
+  url: iframeUrl,
+  title = "",
   onClose,
   hideHeader = false,
   headerBackground,
   headerColor,
   persist = false
 }: ChatIframeProps) => {
-  // Get the origin for creating the mocked chat URL
-  const origin = window.location.origin;
-  const mockedChatUrl = `${origin}/chat.html?forceHideBadge=true`;
-
-  // Use the provided URL or default to the mocked chat URL
-  const iframeUrl = url || mockedChatUrl;
-
   return (
     <Card className="h-full flex flex-col overflow-hidden shadow-lg border border-gray-200 animate-fade-in">
       {!hideHeader && (
-        <div 
+        <div
           className="p-3 border-b border-gray-200 flex justify-between items-center"
-          style={{ 
+          style={{
             backgroundColor: headerBackground || "#f9fafb", // equivalent to bg-gray-50
             color: headerColor || "inherit"
           }}

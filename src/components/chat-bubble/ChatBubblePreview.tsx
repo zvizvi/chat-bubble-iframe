@@ -38,7 +38,7 @@ const ChatBubblePreview = ({
   headerColor = "#000000",
   persistFrame = false
 }: ChatBubblePreviewProps) => {
-  
+
   const getPositionStyles = (position: string) => {
     switch (position) {
       case "bottom-left":
@@ -69,9 +69,9 @@ const ChatBubblePreview = ({
 
   const getButtonIcon = () => {
     const iconName = showFrame ? openButtonIcon : buttonIcon;
-    
+
     // If icon is a keyword (not SVG), render the corresponding icon component
-    if (iconName === "message-circle" || iconName === "arrow-up" || 
+    if (iconName === "message-circle" || iconName === "arrow-up" ||
         iconName === "arrow-down" || iconName === "close") {
       switch (iconName) {
         case "arrow-up":
@@ -85,12 +85,12 @@ const ChatBubblePreview = ({
           return <MessageCircle />;
       }
     }
-    
+
     // If it's an SVG string, render it as HTML
     if (typeof iconName === 'string' && iconName.trim().startsWith('<svg')) {
       return <span dangerouslySetInnerHTML={{ __html: iconName }} />;
     }
-    
+
     // Fallback to message-circle
     return <MessageCircle />;
   };
@@ -139,8 +139,8 @@ const ChatBubblePreview = ({
             transition: "opacity 0.3s ease, visibility 0.3s ease",
           }}
         >
-          <ChatIframe 
-            url={frameUrl} 
+          <ChatIframe
+            url={frameUrl}
             title={frameTitle}
             onClose={() => setShowFrame(false)}
             hideHeader={hideHeader}
