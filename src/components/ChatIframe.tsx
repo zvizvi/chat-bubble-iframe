@@ -14,12 +14,12 @@ const ChatIframe = ({
   title = "Chat Support",
   onClose
 }: ChatIframeProps) => {
-  // Get the origin for creating the standalone chat URL
+  // Get the origin for creating the mocked chat URL
   const origin = window.location.origin;
-  const standaloneChatUrl = `${origin}/chat.html?forceHideBadge=true`;
+  const mockedChatUrl = `${origin}/chat.html?forceHideBadge=true`;
 
-  // Use the provided URL or default to the standalone chat URL
-  const iframeUrl = url || standaloneChatUrl;
+  // Use the provided URL or default to the mocked chat URL
+  const iframeUrl = url || mockedChatUrl;
 
   return (
     <Card className="h-full flex flex-col overflow-hidden shadow-lg border border-gray-200 animate-fade-in">
