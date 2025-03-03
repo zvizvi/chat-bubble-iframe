@@ -14,6 +14,7 @@ const ChatBubbleCode = () => {
     frameUrl: 'https://your-iframe-url.com/', // URL to load in the iframe
     frameTitle: 'Chat Support', // Title for the chat widget
     buttonBackground: '#3b82f6', // Button background color
+    buttonColor: '#FFFFFF', // Button text/icon color
     buttonPosition: 'bottom-right', // Options: 'bottom-right', 'bottom-left', 'top-right', 'top-left'
     buttonSize: '60px', // Button size (width and height)
     frameWidth: '320px', // open frame width
@@ -29,6 +30,11 @@ const ChatBubbleCode = () => {
     openButtonIcon: 'close', // Icon when chat is open (using keyword)
     // Alternative with SVG:
     // openButtonIcon: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    
+    hideHeader: false, // Set to true to completely hide the header
+    headerBackground: '#f9fafb', // Header background color
+    headerColor: '#000000', // Header text color
+    persistFrame: false, // When true, keeps the iframe alive when chat is closed
   };
 </script>
 <script src="https://your-website.com/chat-bubble.js"></script>`;
@@ -90,12 +96,17 @@ const ChatBubbleCode = () => {
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">frameUrl</code>: URL of your page that will load in the iframe</p>
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">frameTitle</code>: Title for the chat widget</p>
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">buttonBackground</code>: Any CSS color for the button's background</p>
+          <p><code className="bg-gray-200 px-1 py-0.5 rounded">buttonColor</code>: Any CSS color for the button's icon/text</p>
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">buttonPosition</code>: Where the button appears on the page</p>
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">buttonSize</code>: Size of the trigger button</p>
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">frameWidth</code>: Width of the open frame</p>
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">frameHeight</code>: Height of the open frame</p>
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">buttonIcon</code>: Icon for button when chat is closed (use a keyword or SVG string)</p>
           <p><code className="bg-gray-200 px-1 py-0.5 rounded">openButtonIcon</code>: Icon for button when chat is open (use a keyword or SVG string)</p>
+          <p><code className="bg-gray-200 px-1 py-0.5 rounded">hideHeader</code>: Set to true to completely hide the header</p>
+          <p><code className="bg-gray-200 px-1 py-0.5 rounded">headerBackground</code>: Any CSS color for the header's background</p>
+          <p><code className="bg-gray-200 px-1 py-0.5 rounded">headerColor</code>: Any CSS color for the header's text</p>
+          <p><code className="bg-gray-200 px-1 py-0.5 rounded">persistFrame</code>: Set to true to keep the iframe alive when chat is closed</p>
         </div>
       </div>
     </Card>
