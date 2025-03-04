@@ -31,7 +31,7 @@ const HeaderOptions = ({
   return (
     <Card className="p-4 rounded-lg">
       <h3 className="text-md font-medium mb-4">Advanced Options</h3>
-      
+
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
@@ -43,67 +43,6 @@ const HeaderOptions = ({
             checked={hideHeader}
             onCheckedChange={setHideHeader}
           />
-        </div>
-
-        {!hideHeader && (
-          <>
-            <div className="space-y-2">
-              <Label htmlFor="header-bg" className="block font-medium">Header Background</Label>
-              <div className="flex gap-3 items-center">
-                <input
-                  id="header-bg"
-                  type="color"
-                  value={headerBackground}
-                  onChange={(e) => setHeaderBackground(e.target.value)}
-                  className="h-10 w-10 rounded cursor-pointer"
-                />
-                <input
-                  type="text"
-                  value={headerBackground}
-                  onChange={(e) => setHeaderBackground(e.target.value)}
-                  className="flex-1 border border-gray-300 rounded px-3 py-2 text-sm"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="header-color" className="block font-medium">Header Text Color</Label>
-              <div className="flex gap-3 items-center">
-                <input
-                  id="header-color"
-                  type="color"
-                  value={headerColor}
-                  onChange={(e) => setHeaderColor(e.target.value)}
-                  className="h-10 w-10 rounded cursor-pointer"
-                />
-                <input
-                  type="text"
-                  value={headerColor}
-                  onChange={(e) => setHeaderColor(e.target.value)}
-                  className="flex-1 border border-gray-300 rounded px-3 py-2 text-sm"
-                />
-              </div>
-            </div>
-          </>
-        )}
-
-        <div className="space-y-2">
-          <Label htmlFor="button-color" className="block font-medium">Button Text Color</Label>
-          <div className="flex gap-3 items-center">
-            <input
-              id="button-color"
-              type="color"
-              value={buttonColor}
-              onChange={(e) => setButtonColor(e.target.value)}
-              className="h-10 w-10 rounded cursor-pointer"
-            />
-            <input
-              type="text"
-              value={buttonColor}
-              onChange={(e) => setButtonColor(e.target.value)}
-              className="flex-1 border border-gray-300 rounded px-3 py-2 text-sm"
-            />
-          </div>
         </div>
 
         <div className="flex items-center justify-between">

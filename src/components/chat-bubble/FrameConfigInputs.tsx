@@ -16,17 +16,17 @@ interface FrameConfigInputsProps {
   setOpenButtonIcon: (icon: string) => void;
 }
 
-const FrameConfigInputs = ({ 
-  frameUrl, 
-  setFrameUrl, 
-  frameTitle, 
+const FrameConfigInputs = ({
+  frameUrl,
+  setFrameUrl,
+  frameTitle,
   setFrameTitle,
   buttonIcon,
   setButtonIcon,
   openButtonIcon,
-  setOpenButtonIcon 
+  setOpenButtonIcon
 }: FrameConfigInputsProps) => {
-  
+
   const iconOptions = [
     { value: "message-circle", label: "Message Circle", icon: <MessageCircle className="h-4 w-4" /> },
     { value: "arrow-up", label: "Arrow Up", icon: <ArrowUp className="h-4 w-4" /> },
@@ -46,7 +46,7 @@ const FrameConfigInputs = ({
           className="w-full"
         />
       </div>
-      
+
       <div className="space-y-2">
         <Label htmlFor="chat-title">Chat Widget Title</Label>
         <Input
@@ -66,7 +66,7 @@ const FrameConfigInputs = ({
               <SelectValue placeholder="Select Icon" />
             </SelectTrigger>
             <SelectContent>
-              {iconOptions.map((icon) => (
+              {iconOptions.filter((item) => item.value !== "arrow-down").map((icon) => (
                 <SelectItem key={icon.value} value={icon.value}>
                   <div className="flex items-center gap-2">
                     {icon.icon}
@@ -85,7 +85,7 @@ const FrameConfigInputs = ({
               <SelectValue placeholder="Select Icon" />
             </SelectTrigger>
             <SelectContent>
-              {iconOptions.map((icon) => (
+              {iconOptions.filter((item) => item.value !== "arrow-up").map((icon) => (
                 <SelectItem key={icon.value} value={icon.value}>
                   <div className="flex items-center gap-2">
                     {icon.icon}
