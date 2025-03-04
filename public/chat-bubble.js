@@ -121,27 +121,25 @@
       ${getChatContainerPosition(config.buttonPosition)}
       width: ${config.frameWidth};
       height: ${config.frameHeight};
-      z-index: 9999;
+      z-index: 9998;
       overflow: hidden;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
       background-color: white;
-      display: ${config.persistFrame ? 'flex' : 'none'};
-      visibility: hidden;
-      opacity: 0;
       flex-direction: column;
-      transition: all 0.3s ease;
-      animation: chatFadeIn 0.3s forwards;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
     }
     .chat-iframe-container.visible {
-      visibility: visible;
       opacity: 1;
+      visibility: visible;
     }
     .chat-iframe {
       width: 100%;
-      height: 100%;
-      border: none;
       flex: 1;
+      border: none;
+      height: ${config.hideHeader ? '100%' : 'calc(100% - 45px)'};
     }
     .chat-close-button {
       background: transparent;
@@ -162,10 +160,6 @@
       width: 18px;
       height: 18px;
     }
-    @keyframes chatFadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
   `;
   document.head.appendChild(style);
 
@@ -178,16 +172,14 @@
   // Create iframe container
   const iframeContainer = document.createElement('div');
   iframeContainer.className = 'chat-iframe-container';
-  if (config.persistFrame) {
-    iframeContainer.style.display = 'flex';
-  }
+  iframeContainer.style.display = 'flex'; // Always use flex for layout
   document.body.appendChild(iframeContainer);
 
   // Create iframe with the specified URL
   let iframe = null;
   let chatOpen = false;
 
-  // Initialize the iframe
+  // Initialize the iframe if persistFrame is true or when first opened
   function initIframe() {
     if (!iframe) {
       // Add header if not hidden
@@ -215,13 +207,14 @@
       iframe = document.createElement('iframe');
       iframe.className = 'chat-iframe';
       iframe.src = config.frameUrl;
-      iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-forms allow-popups');
+      iframe.allow = 'microphone; camera; geolocation';
+      iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-forms allow-popups allow-modals allow-downloads');
       iframe.setAttribute('title', config.frameTitle);
       iframeContainer.appendChild(iframe);
     }
   }
 
-  // If persistFrame is true, initialize the iframe immediately
+  // Initialize iframe immediately if persistFrame is true
   if (config.persistFrame) {
     initIframe();
   }
@@ -232,7 +225,9 @@
 
     if (chatOpen) {
       // Initialize the iframe if not already done
-      initIframe();
+      if (!iframe) {
+        initIframe();
+      }
 
       // Show the container
       iframeContainer.classList.add('visible');
@@ -242,8 +237,11 @@
       iframeContainer.classList.remove('visible');
       button.innerHTML = getIconContent(config.buttonIcon);
 
-      // If not persisting, we could remove the iframe, but we're keeping it for now
-      // If you want to remove it: if (!config.persistFrame) { ... }
+      // If not persisting, remove the iframe
+      if (!config.persistFrame && iframe) {
+        iframeContainer.innerHTML = '';
+        iframe = null;
+      }
     }
   }
 
