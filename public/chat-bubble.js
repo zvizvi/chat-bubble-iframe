@@ -107,11 +107,12 @@
       background-color: ${config.headerBackground};
       color: ${config.headerColor};
       padding: 12px;
+      border-bottom: solid 0.8px #e5e7eb;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       font-size: 16px;
       font-weight: 500;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -123,8 +124,9 @@
       height: ${config.frameHeight};
       z-index: 9998;
       overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      border: solid 0.8px #e5e7eb;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
       background-color: white;
       flex-direction: column;
       transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -139,7 +141,6 @@
       width: 100%;
       flex: 1;
       border: none;
-      height: ${config.hideHeader ? '100%' : 'calc(100% - 45px)'};
     }
     .chat-close-button {
       background: transparent;
