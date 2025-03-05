@@ -2,7 +2,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { Check, Copy } from "lucide-react";
+import { Check, Copy, Download } from "lucide-react";
 import { Highlight, themes } from "prism-react-renderer";
 
 const ChatBubbleCode = () => {
@@ -37,7 +37,7 @@ const ChatBubbleCode = () => {
     persistFrame: false, // When true, keeps the iframe alive when chat is closed
   };
 </script>
-<script src="https://your-website.com/chat-bubble.js"></script>`;
+<script src="https://your-website.com/chat-bubble.min.js"></script>`;
 
   const copyToClipboard = () => {
     const codeToCopy = scriptCode.replace(/,\s\/\/.*\n/g, ",\n") + '\n';
@@ -48,7 +48,27 @@ const ChatBubbleCode = () => {
 
   return (
     <Card className="p-4 bg-gray-50 border border-gray-200 overflow-hidden">
-      <div className="flex justify-end items-center mb-2">
+      <div className="flex justify-between items-center mb-2">
+        <div className="flex gap-2">
+          <a href="/assets/chat-bubble.min.js" download className="inline-flex">
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-8 flex items-center gap-1.5 text-gray-600 hover:text-gray-900"
+            >
+              <Download className="h-4 w-4" /> Download Minified
+            </Button>
+          </a>
+          <a href="/chat-bubble.js" download className="inline-flex">
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-8 flex items-center gap-1.5 text-gray-600 hover:text-gray-900"
+            >
+              <Download className="h-4 w-4" /> Download Source
+            </Button>
+          </a>
+        </div>
         <Button
           variant="ghost"
           size="sm"

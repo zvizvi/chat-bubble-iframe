@@ -1,3 +1,4 @@
+
 name: Deploy to GitHub Pages
 
 on:
@@ -31,8 +32,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
+      - name: Build App
         run: npm run build
+
+      - name: Build Chat Bubble Script
+        run: npx vite build --config chat-bubble.config.ts
+
+      - name: Copy Source Script
+        run: cp public/chat-bubble.js dist/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
