@@ -10,15 +10,20 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'public/chat-bubble.js'),
       name: 'ChatBubble',
-      fileName: (format) => `chat-bubble.${format === 'es' ? 'min' : ''}.js`,
-      formats: ['iife', 'es']
+      fileName: () => `chat-bubble.min.js`,
+      formats: ['iife']
     },
     rollupOptions: {
       output: {
-        entryFileNames: 'chat-bubble.min.js',
         manualChunks: undefined,
       }
     },
-    minify: true,
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: false,
+        drop_debugger: true
+      }
+    },
   }
 });
