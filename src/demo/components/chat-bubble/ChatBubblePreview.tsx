@@ -37,22 +37,22 @@ const ChatBubblePreview = ({
   persistFrame = false
 }: ChatBubblePreviewProps) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  
+
   useEffect(() => {
     updateIframe();
   }, [
-    buttonPosition, 
-    buttonBackground, 
-    buttonColor, 
-    frameUrl, 
-    frameWidth, 
-    frameHeight, 
-    frameTitle, 
-    buttonIcon, 
-    openButtonIcon, 
-    hideHeader, 
-    headerBackground, 
-    headerColor, 
+    buttonPosition,
+    buttonBackground,
+    buttonColor,
+    frameUrl,
+    frameWidth,
+    frameHeight,
+    frameTitle,
+    buttonIcon,
+    openButtonIcon,
+    hideHeader,
+    headerBackground,
+    headerColor,
     persistFrame
   ]);
 
@@ -121,10 +121,10 @@ const ChatBubblePreview = ({
   };
 
   return (
-    <div className="relative w-full max-w-2xl bg-gray-50 rounded-lg p-4 md:p-8 border border-gray-200 min-h-[450px]">
+    <div className="relative flex flex-col w-full max-w-2xl bg-gray-50 rounded-lg border border-gray-200 min-h-[450px]">
       <iframe
         ref={iframeRef}
-        className="w-full h-full min-h-[400px] border-none"
+        className="w-full h-full flex-1 min-h-[400px] border-none"
         title="Chat Bubble Demo"
       />
     </div>
