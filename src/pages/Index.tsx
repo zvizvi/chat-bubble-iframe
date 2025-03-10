@@ -1,6 +1,5 @@
 
-import { Button } from "@/components/ui/button";
-import ChatBubbleDemo from "@/components/ChatBubbleDemo";
+import ChatBubbleDemo from "@/demo/components/ChatBubbleDemo";
 import ChatBubbleCode from "@/components/ChatBubbleCode";
 
 const Index = () => {
