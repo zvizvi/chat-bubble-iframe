@@ -1,13 +1,14 @@
-
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
+import { Switch } from "@/components/ui/switch";
 import PositionOptions from "./chat-bubble/PositionOptions";
 import ColorOptions from "./chat-bubble/ColorOptions";
-import FrameSizeOptions from "./chat-bubble/FrameSizeOptions";
 import FrameConfigInputs from "./chat-bubble/FrameConfigInputs";
 import ChatBubblePreview from "./chat-bubble/ChatBubblePreview";
 import ConfigDisplay from "@/components/chat-bubble/ConfigDisplay";
-import HeaderOptions from "./chat-bubble/HeaderOptions";
 
 interface ChatBubbleDemoProps {
   publicChatUrl?: string;
@@ -68,27 +69,87 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
                 setButtonColor={setButtonColor}
               />
 
-              <FrameSizeOptions
-                frameWidth={frameWidth}
-                setFrameWidth={setFrameWidth}
-                frameHeight={frameHeight}
-                setFrameHeight={setFrameHeight}
-              />
+              <div className="space-y-4">
+                <h3 className="text-md font-medium mb-4">Chat Window Size</h3>
+                
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="frame-width" className="font-medium">Width (px)</Label>
+                      <Input
+                        id="frame-width"
+                        type="number"
+                        value={frameWidth}
+                        onChange={(e) => setFrameWidth(e.target.value)}
+                        className="w-24"
+                        min="200"
+                        max="500"
+                      />
+                    </div>
+                    <Slider
+                      value={[Number(frameWidth)]}
+                      min={200}
+                      max={500}
+                      step={10}
+                      onValueChange={(value) => setFrameWidth(value[0].toString())}
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="frame-height">Height (px)</Label>
+                      <Input
+                        id="frame-height"
+                        type="number"
+                        value={frameHeight}
+                        onChange={(e) => setFrameHeight(e.target.value)}
+                        className="w-24"
+                        min="200"
+                        max="600"
+                      />
+                    </div>
+                    <Slider
+                      value={[Number(frameHeight)]}
+                      min={200}
+                      max={600}
+                      step={10}
+                      onValueChange={(value) => setFrameHeight(value[0].toString())}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <HeaderOptions
-            hideHeader={hideHeader}
-            setHideHeader={setHideHeader}
-            headerBackground={headerBackground}
-            setHeaderBackground={setHeaderBackground}
-            headerColor={headerColor}
-            setHeaderColor={setHeaderColor}
-            buttonColor={buttonColor}
-            setButtonColor={setButtonColor}
-            persistFrame={persistFrame}
-            setPersistFrame={setPersistFrame}
-          />
+          <div className="p-4 rounded-lg border">
+            <h3 className="text-md font-medium mb-4">Advanced Options</h3>
+
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <Label htmlFor="hide-header" className="font-medium">Hide Header</Label>
+                  <p className="text-sm text-gray-500">Remove the title bar from the chat window</p>
+                </div>
+                <Switch
+                  id="hide-header"
+                  checked={hideHeader}
+                  onCheckedChange={setHideHeader}
+                />
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div>
+                  <Label htmlFor="persist-frame" className="font-medium">Keep Widget Alive</Label>
+                  <p className="text-sm text-gray-500">Maintain iframe when chat is closed</p>
+                </div>
+                <Switch
+                  id="persist-frame"
+                  checked={persistFrame}
+                  onCheckedChange={setPersistFrame}
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
         <ChatBubblePreview
