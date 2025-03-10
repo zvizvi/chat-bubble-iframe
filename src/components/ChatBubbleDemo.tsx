@@ -65,8 +65,6 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
               <ColorOptions
                 buttonBackground={buttonBackground}
                 setButtonBackground={setButtonBackground}
-                buttonColor={buttonColor}
-                setButtonColor={setButtonColor}
               />
 
               <div className="space-y-4">

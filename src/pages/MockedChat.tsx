@@ -24,14 +24,14 @@ const MockedChat = () => {
     if (inputValue.trim()) {
       // Add user message
       setMessages([
-        ...messages, 
+        ...messages,
         { id: Date.now(), sender: "user", text: inputValue }
       ]);
-      
+
       // Clear input
       setInputValue("");
       scroolToEnd();
-      
+
       // Simulate bot response after 1 second
       setTimeout(() => {
         setMessages(prev => [
@@ -41,7 +41,7 @@ const MockedChat = () => {
         scroolToEnd();
       }, 1000);
     }
-    
+
     document.getElementById("chat-input")?.focus();
   };
 
@@ -58,8 +58,8 @@ const MockedChat = () => {
             <div
               className={`inline-block px-3 py-2 rounded-lg ${
                 message.sender === "user"
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-100 text-gray-800"
+                  ? "bg-blue-500 text-white rounded-br-sm"
+                  : "bg-gray-100 text-gray-800 rounded-bl-sm"
               }`}
             >
               {message.text}
@@ -80,7 +80,7 @@ const MockedChat = () => {
             className="flex-1 min-w-0 border border-gray-300 rounded-l-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             id="chat-input"
           />
-          <Button 
+          <Button
             className="bg-blue-500 text-white px-4 py-2 rounded-none rounded-r-md hover:bg-blue-600"
             onClick={handleSendMessage}
           >
