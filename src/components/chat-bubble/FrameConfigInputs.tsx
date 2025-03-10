@@ -1,8 +1,8 @@
 
-import React from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { MessageCircle, ArrowDown, ArrowUp, X } from "lucide-react";
 
 interface FrameConfigInputsProps {
   frameUrl: string;
@@ -25,56 +25,73 @@ const FrameConfigInputs = ({
   openButtonIcon,
   setOpenButtonIcon
 }: FrameConfigInputsProps) => {
+
+  const iconOptions = [
+    { value: "message-circle", label: "Message Circle", icon: <MessageCircle className="h-4 w-4" /> },
+    { value: "arrow-up", label: "Arrow Up", icon: <ArrowUp className="h-4 w-4" /> },
+    { value: "arrow-down", label: "Arrow Down", icon: <ArrowDown className="h-4 w-4" /> },
+    { value: "close", label: "Close", icon: <X className="h-4 w-4" /> },
+  ];
+
   return (
-    <div className="space-y-6 mb-8 p-4 border border-gray-200 rounded-lg">
+    <div className="py-8 space-y-8">
       <div className="space-y-2">
-        <Label htmlFor="frame-url">Chat URL</Label>
+        <Label htmlFor="frame-url">URL to open in iframe</Label>
         <Input
           id="frame-url"
-          placeholder="https://your-chat-url.com"
           value={frameUrl}
           onChange={(e) => setFrameUrl(e.target.value)}
+          placeholder="https://your-iframe-url.com/"
+          className="w-full"
         />
-        <p className="text-sm text-gray-500">URL of the chat page to be loaded in the iframe</p>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="frame-title">Chat Title</Label>
+        <Label htmlFor="frame-title">Chat Widget Title</Label>
         <Input
           id="frame-title"
-          placeholder="Chat Support"
           value={frameTitle}
           onChange={(e) => setFrameTitle(e.target.value)}
+          placeholder="Chat Support"
+          className="w-full"
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
-          <Label htmlFor="button-icon">Button Icon</Label>
+          <Label htmlFor="button-icon">Button Icon (Closed State)</Label>
           <Select value={buttonIcon} onValueChange={setButtonIcon}>
-            <SelectTrigger id="button-icon">
-              <SelectValue placeholder="Select an icon" />
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select Icon" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="message-circle">Message Circle</SelectItem>
-              <SelectItem value="arrow-up">Arrow Up</SelectItem>
-              <SelectItem value="arrow-down">Arrow Down</SelectItem>
-              <SelectItem value="close">Close</SelectItem>
+              {iconOptions.filter((item) => item.value !== "arrow-down").map((icon) => (
+                <SelectItem key={icon.value} value={icon.value}>
+                  <div className="flex items-center gap-2">
+                    {icon.icon}
+                    <span>{icon.label}</span>
+                  </div>
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
-        
+
         <div className="space-y-2">
-          <Label htmlFor="open-button-icon">Open Button Icon</Label>
+          <Label htmlFor="open-button-icon">Button Icon (Open State)</Label>
           <Select value={openButtonIcon} onValueChange={setOpenButtonIcon}>
-            <SelectTrigger id="open-button-icon">
-              <SelectValue placeholder="Select an icon" />
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select Icon" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="message-circle">Message Circle</SelectItem>
-              <SelectItem value="arrow-up">Arrow Up</SelectItem>
-              <SelectItem value="arrow-down">Arrow Down</SelectItem>
-              <SelectItem value="close">Close</SelectItem>
+              {iconOptions.filter((item) => item.value !== "arrow-up").map((icon) => (
+                <SelectItem key={icon.value} value={icon.value}>
+                  <div className="flex items-center gap-2">
+                    {icon.icon}
+                    <span>{icon.label}</span>
+                  </div>
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>

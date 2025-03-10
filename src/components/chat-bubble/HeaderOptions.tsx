@@ -2,7 +2,6 @@
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 
 export interface HeaderOptionsProps {
   hideHeader: boolean;
@@ -56,62 +55,6 @@ const HeaderOptions = ({
             checked={persistFrame}
             onCheckedChange={setPersistFrame}
           />
-        </div>
-
-        {!hideHeader && (
-          <div className="space-y-3 pt-2 border-t border-gray-100">
-            <h4 className="text-sm font-medium">Header Styling</h4>
-            
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-1">
-                <Label htmlFor="header-bg" className="text-sm">Background</Label>
-                <div className="flex items-center gap-2">
-                  <div 
-                    className="h-4 w-4 rounded-full border"
-                    style={{ backgroundColor: headerBackground }}
-                  />
-                  <Input
-                    id="header-bg"
-                    value={headerBackground}
-                    onChange={(e) => setHeaderBackground(e.target.value)}
-                    className="h-8"
-                  />
-                </div>
-              </div>
-              
-              <div className="space-y-1">
-                <Label htmlFor="header-color" className="text-sm">Text Color</Label>
-                <div className="flex items-center gap-2">
-                  <div 
-                    className="h-4 w-4 rounded-full border"
-                    style={{ backgroundColor: headerColor }}
-                  />
-                  <Input
-                    id="header-color"
-                    value={headerColor}
-                    onChange={(e) => setHeaderColor(e.target.value)}
-                    className="h-8"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-        
-        <div className="space-y-1">
-          <Label htmlFor="button-color" className="text-sm">Button Text Color</Label>
-          <div className="flex items-center gap-2">
-            <div 
-              className="h-4 w-4 rounded-full border"
-              style={{ backgroundColor: buttonColor }}
-            />
-            <Input
-              id="button-color"
-              value={buttonColor}
-              onChange={(e) => setButtonColor(e.target.value)}
-              className="h-8"
-            />
-          </div>
         </div>
       </div>
     </Card>
