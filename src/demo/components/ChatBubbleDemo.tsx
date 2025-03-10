@@ -14,7 +14,6 @@ interface ChatBubbleDemoProps {
 }
 
 const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
-  const [showFrame, setShowFrame] = useState(false);
   const [buttonPosition, setButtonPosition] = useState("bottom-right");
   const [buttonBackground, setButtonBackground] = useState("#3b82f6");
   const [buttonColor, setButtonColor] = useState("#ffffff");
@@ -29,7 +28,6 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
   const [headerColor, setHeaderColor] = useState("#000000");
   const [persistFrame, setPersistFrame] = useState(false);
   
-  // When publicChatUrl changes, update the frameUrl
   useEffect(() => {
     if (publicChatUrl) {
       setFrameUrl(publicChatUrl);
@@ -94,8 +92,6 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
         </div>
 
         <ChatBubblePreview
-          showFrame={showFrame}
-          setShowFrame={setShowFrame}
           buttonPosition={buttonPosition}
           buttonBackground={buttonBackground}
           buttonColor={buttonColor}

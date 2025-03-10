@@ -2,8 +2,6 @@
 import React, { useEffect, useRef } from "react";
 
 interface ChatBubblePreviewProps {
-  showFrame: boolean;
-  setShowFrame: (show: boolean) => void;
   buttonPosition: string;
   buttonBackground: string;
   buttonColor: string;
@@ -20,21 +18,19 @@ interface ChatBubblePreviewProps {
 }
 
 const ChatBubblePreview = ({
-  showFrame,
-  setShowFrame,
   buttonPosition,
   buttonBackground,
-  buttonColor = "#ffffff",
+  buttonColor,
   frameUrl,
   frameWidth,
   frameHeight,
   frameTitle,
   buttonIcon,
   openButtonIcon,
-  hideHeader = false,
-  headerBackground = "#f9fafb",
-  headerColor = "#000000",
-  persistFrame = false
+  hideHeader,
+  headerBackground,
+  headerColor,
+  persistFrame
 }: ChatBubblePreviewProps) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
@@ -58,7 +54,6 @@ const ChatBubblePreview = ({
 
   const updateIframe = () => {
     if (iframeRef.current) {
-      // Create a blank HTML document with chat-bubble.js included
       const htmlContent = `
         <!DOCTYPE html>
         <html lang="en">
@@ -88,7 +83,6 @@ const ChatBubblePreview = ({
           </div>
 
           <script>
-            // Chat Bubble Configuration
             window.chatBubbleConfig = {
               frameUrl: '${frameUrl}',
               frameTitle: '${frameTitle}',
@@ -110,7 +104,6 @@ const ChatBubblePreview = ({
         </html>
       `;
 
-      // Update the iframe's content
       const iframeDocument = iframeRef.current.contentDocument;
       if (iframeDocument) {
         iframeDocument.open();
