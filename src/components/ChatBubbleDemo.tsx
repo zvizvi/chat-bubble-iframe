@@ -27,7 +27,7 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
   const [headerBackground, setHeaderBackground] = useState("#f9fafb");
   const [headerColor, setHeaderColor] = useState("#000000");
   const [persistFrame, setPersistFrame] = useState(false);
-  
+
   useEffect(() => {
     if (publicChatUrl) {
       setFrameUrl(publicChatUrl);

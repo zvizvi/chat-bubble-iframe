@@ -1,5 +1,5 @@
 
-import ChatBubbleDemo from "@/demo/components/ChatBubbleDemo";
+import ChatBubbleDemo from "@/components/ChatBubbleDemo";
 import ChatBubbleCode from "@/components/ChatBubbleCode";
 
 const Index = () => {

@@ -36,7 +36,7 @@ const ColorOptions = ({
             />
           </div>
         </div>
-        
+
         {buttonColor && setButtonColor && (
           <div className="flex items-center justify-between">
             <Label htmlFor="button-color">Text Color</Label>
