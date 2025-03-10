@@ -114,7 +114,7 @@ const ChatBubblePreview = ({
   };
 
   return (
-    <div className="relative flex flex-col w-full max-w-2xl bg-gray-50 rounded-lg border border-gray-200 min-h-[450px]">
+    <div className="relative flex flex-col w-full max-w-3xl bg-gray-50 rounded-lg border border-gray-200 min-h-[500px]">
       <iframe
         ref={iframeRef}
         className="w-full h-full flex-1 min-h-[400px] border-none"

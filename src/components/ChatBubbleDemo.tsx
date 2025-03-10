@@ -107,7 +107,7 @@ const ChatBubbleDemo = ({ publicChatUrl }: ChatBubbleDemoProps) => {
           persistFrame={persistFrame}
         />
 
-        <div className="mt-6 w-full max-w-2xl">
+        <div className="mt-6 w-full max-w-3xl">
           <ConfigDisplay
             frameUrl={frameUrl}
             frameTitle={frameTitle}
