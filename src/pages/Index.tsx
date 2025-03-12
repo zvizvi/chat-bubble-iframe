@@ -11,7 +11,7 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 via-gray-50/50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <header className="py-16 sm:py-24">
-          <GradientHeading 
+          <GradientHeading
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-center mb-6"
             gradient="bg-gradient-to-r from-purple-600 via-blue-500 to-purple-600"
           >
@@ -23,11 +23,11 @@ const Index = () => {
           </p>
         </header>
 
-        <main className="py-12">
+        <main className="pb-12">
           <div className="space-y-24">
             <section className="relative">
               <div className="absolute inset-0 bg-gradient-to-b from-purple-50/50 via-blue-50/30 to-transparent rounded-3xl -z-10" />
-              <div className="p-8">
+              <div className="px-8">
                 <ChatBubbleDemo publicChatUrl={mockedChatUrl} />
               </div>
             </section>
