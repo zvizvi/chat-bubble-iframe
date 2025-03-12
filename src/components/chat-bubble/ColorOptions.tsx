@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -22,7 +21,7 @@ const ColorOptions = ({ buttonBackground, setButtonBackground }: ColorOptionsPro
 
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-medium">Color</h3>
+      <h3 className="text-lg font-medium">Button Color</h3>
       <RadioGroup
         value={Object.values(colorOptions).some(opt => opt.value !== 'custom' && opt.value === buttonBackground) ? buttonBackground : 'custom'}
         onValueChange={(value) => {

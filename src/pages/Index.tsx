@@ -1,62 +1,102 @@
 
 import ChatBubbleDemo from "@/components/ChatBubbleDemo";
 import ChatBubbleCode from "@/components/ChatBubbleCode";
+import { GradientHeading } from "@/components/ui/gradient-heading";
 
 const Index = () => {
-  // Get the current origin for the iframe URL
   const origin = window.location.origin;
   const mockedChatUrl = `${origin}/mocked-chat`;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-      <header className="py-8 px-6 md:px-12 lg:px-20">
-        <h1 className="text-3xl md:text-4xl font-bold text-center">Chat Bubble Library</h1>
-        <p className="text-gray-600 text-center mt-2 max-w-2xl mx-auto">
-          A lightweight JavaScript library to embed a chat button on any webpage
-        </p>
-      </header>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-gray-50/50 to-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header className="py-16 sm:py-24">
+          <GradientHeading 
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-center mb-6"
+            gradient="bg-gradient-to-r from-purple-600 via-blue-500 to-purple-600"
+          >
+            Chat Bubble Library
+          </GradientHeading>
+          <p className="text-gray-600 text-center text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+            Add a sleek chat widget to your website in minutes. Fully customizable,
+            lightweight, and easy to integrate.
+          </p>
+        </header>
 
-      <main className="px-6 md:px-12 lg:px-20 max-w-7xl mx-auto">
-        <section className="mb-16">
-          <ChatBubbleDemo publicChatUrl={mockedChatUrl} />
-        </section>
+        <main className="py-12">
+          <div className="space-y-24">
+            <section className="relative">
+              <div className="absolute inset-0 bg-gradient-to-b from-purple-50/50 via-blue-50/30 to-transparent rounded-3xl -z-10" />
+              <div className="p-8">
+                <ChatBubbleDemo publicChatUrl={mockedChatUrl} />
+              </div>
+            </section>
 
-        <section className="mb-16">
-          <h2 className="text-2xl font-semibold mb-6">How to Use</h2>
-          <div className="prose max-w-none">
-            <p>Add our script to your webpage and customize it with just a few lines of code:</p>
-            <ChatBubbleCode />
+            <section className="relative">
+              <div className="absolute inset-0 bg-gradient-to-b from-blue-50/30 to-transparent rounded-3xl -z-10" />
+              <div className="p-8">
+                <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                  Quick Integration
+                </h2>
+                <div className="prose max-w-none">
+                  <p className="text-gray-600 text-lg mb-6">
+                    Add our script to your webpage and customize it with just a few lines of code:
+                  </p>
+                  <ChatBubbleCode />
+                </div>
+              </div>
+            </section>
+
+            <section className="mb-20">
+              <h2 className="text-3xl font-bold mb-12 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent text-center">
+                Key Features
+              </h2>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                  <h3 className="text-xl font-semibold mb-4 text-gray-900">Appearance</h3>
+                  <ul className="space-y-3 text-gray-600">
+                    <li className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-purple-500" />
+                      Match your brand with custom colors
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-purple-500" />
+                      Responsive design for all devices
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-purple-500" />
+                      Customizable chat window dimensions
+                    </li>
+                  </ul>
+                </div>
+                <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                  <h3 className="text-xl font-semibold mb-4 text-gray-900">Flexibility</h3>
+                  <ul className="space-y-3 text-gray-600">
+                    <li className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                      Position anywhere on your page
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                      Smart positioning for mobile
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                      Multiple icon options
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
           </div>
-        </section>
+        </main>
 
-        <section className="mb-16">
-          <h2 className="text-2xl font-semibold mb-6">Customization Options</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-              <h3 className="text-lg font-medium mb-3">Appearance</h3>
-              <ul className="space-y-2 text-gray-600">
-                <li>• Change button color to match your brand</li>
-                <li>• Adjust button size for different devices</li>
-                <li>• Customize chat window dimensions</li>
-              </ul>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-              <h3 className="text-lg font-medium mb-3">Positioning</h3>
-              <ul className="space-y-2 text-gray-600">
-                <li>• Place button in any corner of the screen</li>
-                <li>• Position chat window relative to the button</li>
-                <li>• Ensure visibility on all screen sizes</li>
-              </ul>
-            </div>
+        <footer className="py-8 border-t border-gray-200">
+          <div className="text-center text-gray-500 text-sm">
+            © {new Date().getFullYear()} Chat Bubble Library. Built with modern web standards.
           </div>
-        </section>
-      </main>
-
-      <footer className="py-8 border-t border-gray-200 mt-20">
-        <div className="text-center text-gray-500 text-sm">
-          © {new Date().getFullYear()} Chat Bubble Library
-        </div>
-      </footer>
+        </footer>
+      </div>
     </div>
   );
 };
