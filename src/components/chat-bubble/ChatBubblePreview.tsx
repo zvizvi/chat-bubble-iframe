@@ -84,19 +84,30 @@ const ChatBubblePreview = ({
 
           <script>
             window.chatBubbleConfig = {
-              frameUrl: '${frameUrl}',
-              frameTitle: '${frameTitle}',
-              buttonBackground: '${buttonBackground}',
-              buttonColor: '${buttonColor}',
-              buttonPosition: '${buttonPosition}',
-              frameWidth: '${frameWidth}px',
-              frameHeight: '${frameHeight}px',
-              buttonIcon: '${buttonIcon}',
-              openButtonIcon: '${openButtonIcon}',
-              hideHeader: ${hideHeader},
-              headerBackground: '${headerBackground}',
-              headerColor: '${headerColor}',
-              persistFrame: ${persistFrame}
+              header: {
+                shown: ${!hideHeader},
+                backgroundColor: '${headerBackground}',
+                textColor: '${headerColor}',
+                title: '${frameTitle}'
+              },
+              frame: {
+                url: '${frameUrl}',
+                width: '${frameWidth}px',
+                height: '${frameHeight}px',
+                persist: ${persistFrame}
+              },
+              button: {
+                icon: '${buttonIcon}',
+                backgroundColor: '${buttonBackground}',
+                textColor: '${buttonColor}',
+                position: '${buttonPosition}',
+                size: '60px'
+              },
+              openButton: {
+                icon: '${openButtonIcon}',
+                backgroundColor: '${buttonBackground}',
+                textColor: '${buttonColor}'
+              }
             };
           </script>
           <script src="/chat-bubble.js"></script>

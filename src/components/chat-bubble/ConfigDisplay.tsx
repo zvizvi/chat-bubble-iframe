@@ -57,20 +57,30 @@ const ConfigDisplay = ({
 
   const configCode = `// Add this code to your website
 window.chatBubbleConfig = {
-  frameUrl: '${frameUrl}',
-  frameTitle: '${frameTitle}',
-  buttonBackground: '${buttonBackground}',
-  buttonColor: '${buttonColor}',
-  buttonPosition: '${buttonPosition}',
-  buttonSize: '60px',
-  frameWidth: '${frameWidth}px',
-  frameHeight: '${frameHeight}px',
-  buttonIcon: ${formatIconConfig(buttonIcon)}, // Can be 'message-circle', 'arrow-up', 'arrow-down', 'close' or an SVG string
-  openButtonIcon: ${formatIconConfig(openButtonIcon)}, // Can be 'message-circle', 'arrow-up', 'arrow-down', 'close' or an SVG string
-  hideHeader: ${hideHeader}, // When true, hides the header completely
-  headerBackground: '${headerBackground}', // Background color for the header
-  headerColor: '${headerColor}', // Text color for the header
-  persistFrame: ${persistFrame} // When true, keeps the iframe alive when chat is closed
+  header: {
+    shown: ${!hideHeader},
+    backgroundColor: '${headerBackground}',
+    textColor: '${headerColor}',
+    title: '${frameTitle}'
+  },
+  frame: {
+    url: '${frameUrl}',
+    width: '${frameWidth}px',
+    height: '${frameHeight}px',
+    persist: ${persistFrame}
+  },
+  button: {
+    icon: ${formatIconConfig(buttonIcon)},
+    backgroundColor: '${buttonBackground}',
+    textColor: '${buttonColor}',
+    position: '${buttonPosition}',
+    size: '60px'
+  },
+  openButton: {
+    icon: ${formatIconConfig(openButtonIcon)},
+    backgroundColor: '${buttonBackground}',
+    textColor: '${buttonColor}'
+  }
 };
 
 // Then import the chat-bubble.js script

@@ -1,3 +1,4 @@
+
 /**
  * Chat Bubble Library
  * A lightweight JavaScript library to embed a frame widget on any webpage
@@ -5,29 +6,56 @@
 (function() {
   // Default configuration
   const defaultConfig = {
-    frameUrl: 'https://your-iframe-url.com/',
-    frameTitle: 'Chat Support',
-    buttonBackground: '#3b82f6',
-    buttonColor: '#ffffff',
-    buttonPosition: 'bottom-right',
-    buttonSize: '60px',
-    frameWidth: '320px',
-    frameHeight: '400px',
-    buttonIcon: 'message-circle', // Can be 'message-circle', 'arrow-up', 'arrow-down', 'close' or an SVG string
-    openButtonIcon: 'close', // Can be 'message-circle', 'arrow-up', 'arrow-down', 'close' or an SVG string
-    hideHeader: false, // When true, hides the header completely
-    headerBackground: '#f9fafb', // Background color for the header
-    headerColor: '#000000', // Text color for the header
-    persistFrame: false, // When true, keeps the iframe alive when chat is closed
+    header: {
+      shown: true,
+      backgroundColor: '#f9fafb',
+      textColor: '#000000',
+      title: 'Chat Support'
+    },
+    frame: {
+      url: 'https://your-iframe-url.com/',
+      width: '320px',
+      height: '400px',
+      persist: false
+    },
+    button: {
+      icon: 'message-circle',
+      backgroundColor: '#3b82f6',
+      textColor: '#ffffff',
+      position: 'bottom-right',
+      size: '60px'
+    },
+    openButton: {
+      icon: 'close',
+      backgroundColor: '#3b82f6',
+      textColor: '#ffffff'
+    }
   };
 
-  // Merge default config with user config
-  const config = {
-    ...defaultConfig,
-    ...(window.chatBubbleConfig || {})
+  // Merge default config with user config (preserving nested objects)
+  const mergeConfig = (defaultObj, userObj) => {
+    const result = { ...defaultObj };
+    
+    if (!userObj) return result;
+    
+    Object.keys(result).forEach(key => {
+      if (userObj[key] !== undefined) {
+        if (typeof result[key] === 'object' && !Array.isArray(result[key]) && 
+            typeof userObj[key] === 'object' && !Array.isArray(userObj[key])) {
+          result[key] = mergeConfig(result[key], userObj[key]);
+        } else {
+          result[key] = userObj[key];
+        }
+      }
+    });
+    
+    return result;
   };
+  
+  // Create the final config
+  const config = mergeConfig(defaultConfig, window.chatBubbleConfig || {});
 
-  // Get position styles based on buttonPosition
+  // Get position styles based on button position
   function getPositionStyles(position) {
     switch (position) {
       case 'bottom-left':
@@ -81,12 +109,12 @@
   style.innerHTML = `
     .chat-bubble-button {
       position: fixed;
-      ${getPositionStyles(config.buttonPosition)}
-      width: ${config.buttonSize};
-      height: ${config.buttonSize};
+      ${getPositionStyles(config.button.position)}
+      width: ${config.button.size};
+      height: ${config.button.size};
       border-radius: 50%;
-      background-color: ${config.buttonBackground};
-      color: ${config.buttonColor};
+      background-color: ${config.button.backgroundColor};
+      color: ${config.button.textColor};
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       display: flex;
       align-items: center;
@@ -104,8 +132,8 @@
       height: 24px;
     }
     .chat-bubble-header {
-      background-color: ${config.headerBackground};
-      color: ${config.headerColor};
+      background-color: ${config.header.backgroundColor};
+      color: ${config.header.textColor};
       padding: 12px;
       border-bottom: solid 0.8px #e5e7eb;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -119,9 +147,9 @@
     }
     .chat-iframe-container {
       position: fixed;
-      ${getChatContainerPosition(config.buttonPosition)}
-      width: ${config.frameWidth};
-      height: ${config.frameHeight};
+      ${getChatContainerPosition(config.button.position)}
+      width: ${config.frame.width};
+      height: ${config.frame.height};
       z-index: 9998;
       overflow: hidden;
       border-radius: 8px;
@@ -145,7 +173,7 @@
     .chat-close-button {
       background: transparent;
       border: none;
-      color: ${config.headerColor};
+      color: ${config.header.textColor};
       cursor: pointer;
       padding: 0;
       display: flex;
@@ -167,7 +195,7 @@
   // Create button
   const button = document.createElement('div');
   button.className = 'chat-bubble-button';
-  button.innerHTML = getIconContent(config.buttonIcon);
+  button.innerHTML = getIconContent(config.button.icon);
   document.body.appendChild(button);
 
   // Create iframe container
@@ -183,15 +211,15 @@
   // Initialize the iframe if persistFrame is true or when first opened
   function initIframe() {
     if (!iframe) {
-      // Add header if not hidden
-      if (!config.hideHeader) {
+      // Add header if shown is true
+      if (config.header.shown) {
         // Create header with title
         const headerElement = document.createElement('div');
         headerElement.className = 'chat-bubble-header';
 
         // Add title
         const titleElement = document.createElement('div');
-        titleElement.textContent = config.frameTitle;
+        titleElement.textContent = config.header.title;
 
         // Add close button in header
         const closeButton = document.createElement('button');
@@ -207,16 +235,16 @@
       // Create and add iframe
       iframe = document.createElement('iframe');
       iframe.className = 'chat-iframe';
-      iframe.src = config.frameUrl;
+      iframe.src = config.frame.url;
       iframe.allow = 'microphone; camera; geolocation';
       iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-forms allow-popups allow-modals allow-downloads');
-      iframe.setAttribute('title', config.frameTitle);
+      iframe.setAttribute('title', config.header.title);
       iframeContainer.appendChild(iframe);
     }
   }
 
-  // Initialize iframe immediately if persistFrame is true
-  if (config.persistFrame) {
+  // Initialize iframe immediately if persist is true
+  if (config.frame.persist) {
     initIframe();
   }
 
@@ -230,16 +258,24 @@
         initIframe();
       }
 
+      // Update button to use openButton styles
+      button.style.backgroundColor = config.openButton.backgroundColor;
+      button.style.color = config.openButton.textColor;
+
       // Show the container
       iframeContainer.classList.add('visible');
-      button.innerHTML = getIconContent(config.openButtonIcon);
+      button.innerHTML = getIconContent(config.openButton.icon);
     } else {
+      // Restore original button styles
+      button.style.backgroundColor = config.button.backgroundColor;
+      button.style.color = config.button.textColor;
+
       // Hide the container
       iframeContainer.classList.remove('visible');
-      button.innerHTML = getIconContent(config.buttonIcon);
+      button.innerHTML = getIconContent(config.button.icon);
 
       // If not persisting, remove the iframe
-      if (!config.persistFrame && iframe) {
+      if (!config.frame.persist && iframe) {
         iframeContainer.innerHTML = '';
         iframe = null;
       }
