@@ -74,6 +74,27 @@ const ChatBubblePreview = ({
               margin: 0 auto;
               line-height: 1.5;
             }
+            @keyframes slide-in-up {
+              0% {
+                opacity: 0;
+                transform: translateY(20px);
+              }
+              100% {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+            
+            @keyframes slide-out-down {
+              0% {
+                opacity: 1;
+                transform: translateY(0);
+              }
+              100% {
+                opacity: 0;
+                transform: translateY(20px);
+              }
+            }
           </style>
         </head>
         <body>

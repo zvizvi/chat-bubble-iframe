@@ -157,13 +157,15 @@
       box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
       background-color: white;
       flex-direction: column;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       opacity: 0;
       visibility: hidden;
+      transform: translateY(20px);
     }
     .chat-iframe-container.visible {
       opacity: 1;
       visibility: visible;
+      transform: translateY(0);
     }
     .chat-iframe {
       width: 100%;
@@ -188,6 +190,28 @@
     .chat-close-button svg {
       width: 18px;
       height: 18px;
+    }
+    
+    @keyframes slide-in-up {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slide-out-down {
+      0% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
     }
   `;
   document.head.appendChild(style);
@@ -262,23 +286,29 @@
       button.style.backgroundColor = config.openButton.backgroundColor;
       button.style.color = config.openButton.textColor;
 
-      // Show the container
+      // Show the container with animation
       iframeContainer.classList.add('visible');
+      iframeContainer.style.animation = 'slide-in-up 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards';
       button.innerHTML = getIconContent(config.openButton.icon);
     } else {
       // Restore original button styles
       button.style.backgroundColor = config.button.backgroundColor;
       button.style.color = config.button.textColor;
 
-      // Hide the container
-      iframeContainer.classList.remove('visible');
+      // Hide the container with animation
+      iframeContainer.style.animation = 'slide-out-down 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards';
       button.innerHTML = getIconContent(config.button.icon);
-
-      // If not persisting, remove the iframe
-      if (!config.frame.persist && iframe) {
-        iframeContainer.innerHTML = '';
-        iframe = null;
-      }
+      
+      // After animation completes
+      setTimeout(() => {
+        iframeContainer.classList.remove('visible');
+        
+        // If not persisting, remove the iframe
+        if (!config.frame.persist && iframe) {
+          iframeContainer.innerHTML = '';
+          iframe = null;
+        }
+      }, 300); // Match the animation duration
     }
   }
 
