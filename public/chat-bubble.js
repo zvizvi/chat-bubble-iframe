@@ -272,6 +272,21 @@
     initIframe();
   }
 
+  // Set widget dimensions
+  function setWidgetDimensions(width, height) {
+    if (width && !isNaN(parseInt(width))) {
+      const widthValue = /^\d+$/.test(width) ? `${width}px` : width;
+      iframeContainer.style.width = widthValue;
+      config.frame.width = widthValue;
+    }
+    
+    if (height && !isNaN(parseInt(height))) {
+      const heightValue = /^\d+$/.test(height) ? `${height}px` : height;
+      iframeContainer.style.height = heightValue;
+      config.frame.height = heightValue;
+    }
+  }
+
   // Toggle chat function
   function toggleChat() {
     chatOpen = !chatOpen;
@@ -290,10 +305,22 @@
       iframeContainer.classList.add('visible');
       iframeContainer.style.animation = 'slide-in-up 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards';
       button.innerHTML = getIconContent(config.openButton.icon);
+      
+      // Send event to the iframe that the chat is opened
+      if (iframe) {
+        setTimeout(() => {
+          iframe.contentWindow.postMessage({ type: 'chat-bubble-opened' }, '*');
+        }, 300);
+      }
     } else {
       // Restore original button styles
       button.style.backgroundColor = config.button.backgroundColor;
       button.style.color = config.button.textColor;
+
+      // Send event to the iframe that the chat is closing
+      if (iframe) {
+        iframe.contentWindow.postMessage({ type: 'chat-bubble-closing' }, '*');
+      }
 
       // Hide the container with animation
       iframeContainer.style.animation = 'slide-out-down 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards';
@@ -312,6 +339,62 @@
     }
   }
 
+  // Listen for messages from the iframe
+  window.addEventListener('message', function(event) {
+    // Ensure we only process messages from our iframe
+    if (iframe && event.source === iframe.contentWindow) {
+      try {
+        const message = event.data;
+        
+        // Handle different message types
+        switch (message.type) {
+          case 'toggle-chat':
+            toggleChat();
+            break;
+            
+          case 'open-chat':
+            if (!chatOpen) toggleChat();
+            break;
+            
+          case 'close-chat':
+            if (chatOpen) toggleChat();
+            break;
+            
+          case 'resize-widget':
+            if (message.width || message.height) {
+              setWidgetDimensions(message.width, message.height);
+            }
+            break;
+            
+          case 'get-config':
+            // Send current configuration to the iframe
+            iframe.contentWindow.postMessage({
+              type: 'chat-bubble-config',
+              config: config
+            }, '*');
+            break;
+        }
+      } catch (error) {
+        console.error('Error processing message from iframe:', error);
+      }
+    }
+  });
+
   // Add click event listener
   button.addEventListener('click', toggleChat);
+  
+  // Expose API for external usage
+  window.chatBubbleAPI = {
+    toggle: toggleChat,
+    open: function() {
+      if (!chatOpen) toggleChat();
+    },
+    close: function() {
+      if (chatOpen) toggleChat();
+    },
+    resize: setWidgetDimensions,
+    getConfig: function() {
+      return {...config};
+    }
+  };
 })();
